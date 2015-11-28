@@ -97,10 +97,12 @@ func printError(err error) {
     }
 }
 
-func setRegion(region string) {
+// SetRegion takes in a string
+// and sets it to the library variable
+func SetRegion(region string) {
     Region = region
 }
 
-func setAPIKey(key string) {
+func SetAPIKey(key string) {
     Api_Key = key
 }

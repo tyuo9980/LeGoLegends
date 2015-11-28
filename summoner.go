@@ -2,6 +2,7 @@ package legolegends
 
 import (
     "fmt"
+    "log"
     "strings"
 )
 
@@ -49,12 +50,13 @@ type RuneSlot struct {
 
 func GetSummonerByNames(names ...string) map[string]Summoner {
     nameString := strings.Join([]string(names), ",")
+    log.Println(nameString)
+
     args := createArgs("")
     url := createApiUrl(SUMMONER_BY_NAME) + fmt.Sprintf("%d?%v", nameString, args)
 
     summoners := make(map[string]Summoner)
-    reqBody := sendRequest(url)
-    decodeRequest(reqBody, &summoners)
+    decodeRequest(url, &summoners)
 
     return summoners
 }
@@ -65,8 +67,7 @@ func GetSummonerByIds(ids ...string) map[string]Summoner {
     url := createApiUrl(SUMMONER_BY_ID) + fmt.Sprintf("%d?%v", idString, args)
 
     summoners := make(map[string]Summoner)
-    reqBody := sendRequest(url)
-    decodeRequest(reqBody, &summoners)
+    decodeRequest(url, &summoners)
 
     return summoners
 }
@@ -77,8 +78,7 @@ func GetSummonerMasteries(ids ...string) map[string]MasteryPages {
     url := createApiUrl(SUMMONER_MASTERIES) + fmt.Sprintf("%d?%v", idString, args)
 
     masteries := make(map[string]MasteryPages)
-    reqBody := sendRequest(url)
-    decodeRequest(reqBody, &masteries)
+    decodeRequest(url, &masteries)
 
     return masteries
 }
@@ -89,8 +89,7 @@ func GetSummonerRunes(ids ...string) map[string]RunePages {
     url := createApiUrl(SUMMONER_RUNES) + fmt.Sprintf("%d?%v", idString, args)
 
     runes := make(map[string]RunePages)
-    reqBody := sendRequest(url)
-    decodeRequest(reqBody, &runes)
+    decodeRequest(url, &runes)
 
     return runes
 }
@@ -101,8 +100,7 @@ func GetSummonerName(ids ...string) map[string]string {
     url := createApiUrl(SUMMONER_NAME) + fmt.Sprintf("%d?%v", idString, args)
 
     names := make(map[string]string)
-    reqBody := sendRequest(url)
-    decodeRequest(reqBody, &names)
+    decodeRequest(url, &names)
 
     return names
 }

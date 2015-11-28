@@ -3,7 +3,6 @@ package legolegends
 import (
     "encoding/json"
     "fmt"
-    "io"
     "log"
     "net/http"
     "strconv"
@@ -84,16 +83,12 @@ func createArgs(keys string, argVals ...interface{}) string {
     return args
 }
 
-func sendRequest(url string) io.Reader {
+func decodeRequest(url string, v interface{}) {
     resp, err := http.Get(url)
     defer resp.Body.Close()
     printError(err)
 
-    return resp.Body
-}
-
-func decodeRequest(r io.Reader, v interface{}) {
-    err := json.NewDecoder(r).Decode(&v)
+    err = json.NewDecoder(resp.Body).Decode(&v)
     printError(err)
 }
 

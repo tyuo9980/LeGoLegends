@@ -38,8 +38,7 @@ func GetMatchlist(
     url := createApiUrl(SUMMONER_BY_NAME) + fmt.Sprintf("%d?%v", summonerId, args)
 
     var matchList MatchList
-    reqBody := sendRequest(url)
-    decodeRequest(reqBody, &matchList)
+    decodeRequest(url, &matchList)
 
     return matchList
 }

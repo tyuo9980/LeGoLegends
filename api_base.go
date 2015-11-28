@@ -11,8 +11,8 @@ import (
 )
 
 var (
-    Region  string = "na"
-    Api_Key string = "6bf45188-e99f-46c1-9695-1a035454bc4c"
+    Region string
+    ApiKey string
 )
 
 const (
@@ -27,7 +27,7 @@ const (
     STATIC_ITEM     string = "/v1.2/item"
 )
 
-func normalizeName(names ...string) []string {
+func NormalizeName(names ...string) []string {
     var nameList []string
 
     for i, name := range names {
@@ -97,12 +97,10 @@ func printError(err error) {
     }
 }
 
-// SetRegion takes in a string
-// and sets it to the library variable
 func SetRegion(region string) {
     Region = region
 }
 
-func SetAPIKey(key string) {
-    Api_Key = key
+func SetApiKey(key string) {
+    ApiKey = key
 }

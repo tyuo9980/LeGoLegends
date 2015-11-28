@@ -19,13 +19,24 @@ type MatchReference struct {
     Lane       string `json:"lane"`
 }
 
-func Matchlist(
+func GetMatchlist(
+    summonerId string,
     championIds string,
     rankedQueues string,
     seasons string,
     beginTime int64,
     endTime int64,
     beginIndex int,
-    endIndex int) {
+    endIndex int) MatchList {
 
+    idString := strings.Join([]string(championIds), ",")
+    argString := "championIds,rankedQueues,seasons,beginTime,endTime,beginIndex,endIndex"
+    args := createArgs(argString, championIds, rankedQueues, seasons, beginTime, endTime, beginIndex, endIndex)
+    url := createApiUrl(SUMMONER_BY_NAME) + fmt.Sprintf("%d?%v", summonerId, args)
+
+    var matchList MatchList
+    reqBody := sendRequest(url)
+    decodeRequest(reqBody, &matchList)
+
+    return matchList
 }

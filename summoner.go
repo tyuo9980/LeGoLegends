@@ -13,7 +13,7 @@ type Summoner struct {
     SummonerLevel int    `json:"summonerLevel"`
 }
 
-type MasteryBook struct {
+type MasteryPages struct {
     Pages      []MasteryPage `json:"pages"`
     SummonerId int64         `json:"summonerId"`
 }
@@ -30,7 +30,7 @@ type Mastery struct {
     Rank int `json:"rank"`
 }
 
-type RuneBook struct {
+type RunePages struct {
     Pages      []RunePage `json:"pages"`
     SummonerId int        `json:"summonerId"`
 }
@@ -47,7 +47,7 @@ type RuneSlot struct {
     RuneSlotId int `json:"runeSlotId"`
 }
 
-func SummonerByNames(names ...string) map[string]Summoner {
+func GetSummonerByNames(names ...string) map[string]Summoner {
     nameString := strings.Join([]string(names), ",")
     args := createArgs("")
     url := createApiUrl(SUMMONER_BY_NAME) + fmt.Sprintf("%d?%v", nameString, args)
@@ -59,18 +59,50 @@ func SummonerByNames(names ...string) map[string]Summoner {
     return summoners
 }
 
-func GetSummonerByIds() {
+func GetSummonerByIds(ids ...string) map[string]Summoner {
+    idString := strings.Join([]string(ids), ",")
+    args := createArgs("")
+    url := createApiUrl(SUMMONER_BY_ID) + fmt.Sprintf("%d?%v", idString, args)
 
+    summoners := make(map[string]Summoner)
+    reqBody := sendRequest(url)
+    decodeRequest(reqBody, &summoners)
+
+    return summoners
 }
 
-func GetSummonerMasteries() {
+func GetSummonerMasteries(ids ...string) map[string]MasteryPages {
+    idString := strings.Join([]string(ids), ",")
+    args := createArgs("")
+    url := createApiUrl(SUMMONER_MASTERIES) + fmt.Sprintf("%d?%v", idString, args)
 
+    masteries := make(map[string]MasteryPages)
+    reqBody := sendRequest(url)
+    decodeRequest(reqBody, &masteries)
+
+    return masteries
 }
 
-func GetSummonerRunes() {
+func GetSummonerRunes(ids ...string) map[string]RunePages {
+    idString := strings.Join([]string(ids), ",")
+    args := createArgs("")
+    url := createApiUrl(SUMMONER_RUNES) + fmt.Sprintf("%d?%v", idString, args)
 
+    runes := make(map[string]RunePages)
+    reqBody := sendRequest(url)
+    decodeRequest(reqBody, &runes)
+
+    return runes
 }
 
-func GetSummonerNames() {
+func GetSummonerName(ids ...string) map[string]string {
+    idString := strings.Join([]string(ids), ",")
+    args := createArgs("")
+    url := createApiUrl(SUMMONER_NAME) + fmt.Sprintf("%d?%v", idString, args)
 
+    names := make(map[string]String)
+    reqBody := sendRequest(url)
+    decodeRequest(reqBody, &names)
+
+    return names
 }

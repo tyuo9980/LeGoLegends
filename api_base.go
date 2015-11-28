@@ -61,7 +61,7 @@ func createShardUrl(endpoint string) string {
 
 func createArgs(keys string, argVals ...interface{}) string {
     keyArray := strings.Split(keys, ",")
-    args := "?api_key=" + ApiKey
+    args := "api_key=" + ApiKey
 
     for i, arg := range argVals {
         var val string

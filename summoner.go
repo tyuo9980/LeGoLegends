@@ -76,7 +76,7 @@ func GetSummonerByIds(ids ...string) map[string]Summoner {
 func GetSummonerMasteries(ids ...string) map[string]MasteryPages {
     idString := strings.Join([]string(ids), ",")
     args := createArgs("")
-    url := createApiUrl(SUMMONER_MASTERIES) + fmt.Sprintf("%d?%v", idString, args)
+    url := createApiUrl(SUMMONER_MASTERIES) + fmt.Sprintf("/%d?%v", idString, args)
 
     masteries := make(map[string]MasteryPages)
     decodeRequest(url, &masteries)

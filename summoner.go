@@ -53,7 +53,7 @@ func GetSummonerByNames(names ...string) (map[string]Summoner, error) {
     log.Println(nameString)
 
     args := createArgs("")
-    url := createApiUrl(SUMMONER_BY_NAME) + fmt.Sprintf("%d?%v", nameString, args)
+    url := createApiUrl(SUMMONER_BY_NAME) + fmt.Sprintf("%v?%v", nameString, args)
 
     log.Println(url)
     summoners := make(map[string]Summoner)

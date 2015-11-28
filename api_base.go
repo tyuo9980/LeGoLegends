@@ -85,8 +85,8 @@ func createArgs(keys string, argVals ...interface{}) string {
 
 func decodeRequest(url string, v interface{}) {
     resp, err := http.Get(url)
-    defer resp.Body.Close()
     printError(err)
+    defer resp.Body.Close()
 
     err = json.NewDecoder(resp.Body).Decode(&v)
     printError(err)

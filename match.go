@@ -232,6 +232,10 @@ type Position struct {
 
 //get match
 //stuff
+func MatchByMatchIdTest() string {
+    return "hi"
+}
+
 func Match(matchId int64, includeTimeline bool) MatchDetail {
     args := createArgs("includeTimeline", includeTimeline)
     url := createApiUrl(MATCH) + fmt.Sprintf("%d?%v", matchId, args)

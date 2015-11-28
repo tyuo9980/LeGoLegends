@@ -19,7 +19,7 @@ type MatchReference struct {
     Lane       string `json:"lane"`
 }
 
-func getMatchlist(
+func Matchlist(
     championIds string,
     rankedQueues string,
     seasons string,

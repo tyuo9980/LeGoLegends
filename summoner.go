@@ -47,7 +47,7 @@ type RuneSlot struct {
     RuneSlotId int `json:"runeSlotId"`
 }
 
-func GetSummonerByNames(names ...string) map[string]Summoner {
+func SummonerByNames(names ...string) map[string]Summoner {
     nameString := strings.Join([]string(names), ",")
     args := createArgs("")
     url := createApiUrl(SUMMONER_BY_NAME) + fmt.Sprintf("%d?%v", nameString, args)

@@ -59,18 +59,18 @@ func GetSummonerByNames(names ...string) map[string]Summoner {
     return summoners
 }
 
-func getSummonerByIds() {
+func GetSummonerByIds() {
 
 }
 
-func getSummonerMasteries() {
+func GetSummonerMasteries() {
 
 }
 
-func getSummonerRunes() {
+func GetSummonerRunes() {
 
 }
 
-func getSummonerNames() {
+func GetSummonerNames() {
 
 }

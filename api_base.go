@@ -18,9 +18,15 @@ var (
 const (
     CDN_ROOT string = "https://ddragon.leagueoflegends.com/cdn"
 
-    MATCH_LIST       string = "/v2.2/matchlist/by-summoner"
-    MATCH            string = "/v2.2/match"
-    SUMMONER_BY_NAME string = "/v1.4/summoner/by-name"
+    MATCH_LIST string = "/v2.2/matchlist/by-summoner"
+
+    MATCH string = "/v2.2/match"
+
+    SUMMONER_BY_NAME   string = "/v1.4/summoner/by-name"
+    SUMMONER_BY_ID     string = "/v1.4/summoner"
+    SUMMONER_NAME      string = "/v1.4/summoner"
+    SUMMONER_RUNES     string = "/v1.4/summoner"
+    SUMMONER_MASTERIES string = "/v1.4/summoner"
 
     STATIC_VERSION  string = "/v1.2/versions"
     STATIC_CHAMPION string = "/v1.2/champion"
@@ -57,7 +63,7 @@ func createShardUrl(endpoint string) string {
 
 func createArgs(keys string, argVals ...interface{}) string {
     keyArray := strings.Split(keys, ",")
-    args := "?api_key=" + Api_Key
+    args := "?api_key=" + ApiKey
 
     for i, arg := range argVals {
         var val string

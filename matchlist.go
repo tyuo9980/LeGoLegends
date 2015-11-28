@@ -1,5 +1,9 @@
 package legolegends
 
+import (
+    "fmt"
+)
+
 type MatchList struct {
     TotalGames int              `json:"totalGames"`
     StartIndex int              `json:"startIndex"`
@@ -29,7 +33,6 @@ func GetMatchlist(
     beginIndex int,
     endIndex int) MatchList {
 
-    idString := strings.Join([]string(championIds), ",")
     argString := "championIds,rankedQueues,seasons,beginTime,endTime,beginIndex,endIndex"
     args := createArgs(argString, championIds, rankedQueues, seasons, beginTime, endTime, beginIndex, endIndex)
     url := createApiUrl(SUMMONER_BY_NAME) + fmt.Sprintf("%d?%v", summonerId, args)

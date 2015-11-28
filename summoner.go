@@ -100,7 +100,7 @@ func GetSummonerName(ids ...string) map[string]string {
     args := createArgs("")
     url := createApiUrl(SUMMONER_NAME) + fmt.Sprintf("%d?%v", idString, args)
 
-    names := make(map[string]String)
+    names := make(map[string]string)
     reqBody := sendRequest(url)
     decodeRequest(reqBody, &names)
 

@@ -20,7 +20,7 @@ const (
 
     MATCH string = "v2.2/match"
 
-    SUMMONER_BY_NAME   string = "v1.4/summoner/by-name"
+    SUMMONER_BY_NAME   string = "v1.4/summoner/by-name/"
     SUMMONER_BY_ID     string = "v1.4/summoner"
     SUMMONER_NAME      string = "v1.4/summoner"
     SUMMONER_RUNES     string = "v1.4/summoner"

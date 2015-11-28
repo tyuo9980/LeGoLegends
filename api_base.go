@@ -82,11 +82,19 @@ func createArgs(keys string, argVals ...interface{}) string {
     return args
 }
 
-func decodeRequest(url string, v interface{}) {
-    resp, _ := http.Get(url)
+func decodeRequest(url string, v interface{}) error {
+    resp, err := http.Get(url)
+    if err != nil {
+        return err
+    }
     defer resp.Body.Close()
 
-    _ = json.NewDecoder(resp.Body).Decode(&v)
+    err = json.NewDecoder(resp.Body).Decode(&v)
+    if err != nil {
+        return err
+    }
+
+    return err
 }
 
 func SetRegion(region string) {

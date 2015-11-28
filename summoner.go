@@ -48,7 +48,7 @@ type RuneSlot struct {
     RuneSlotId int `json:"runeSlotId"`
 }
 
-func GetSummonerByNames(names ...string) map[string]Summoner {
+func GetSummonerByNames(names ...string) (map[string]Summoner, error) {
     nameString := strings.Join([]string(names), ",")
     log.Println(nameString)
 
@@ -56,9 +56,9 @@ func GetSummonerByNames(names ...string) map[string]Summoner {
     url := createApiUrl(SUMMONER_BY_NAME) + fmt.Sprintf("%d?%v", nameString, args)
 
     summoners := make(map[string]Summoner)
-    decodeRequest(url, &summoners)
+    err := decodeRequest(url, &summoners)
 
-    return summoners
+    return summoners, err
 }
 
 func GetSummonerByIds(ids ...string) map[string]Summoner {

@@ -3,7 +3,6 @@ package legolegends
 import (
     "encoding/json"
     "fmt"
-    "log"
     "net/http"
     "strconv"
     "strings"
@@ -84,16 +83,10 @@ func createArgs(keys string, argVals ...interface{}) string {
 }
 
 func decodeRequest(url string, v interface{}) {
-    resp, err := http.Get(url)
-    if err != nil {
-        log.Print(err)
-    }
+    resp, _ := http.Get(url)
     defer resp.Body.Close()
 
-    err = json.NewDecoder(resp.Body).Decode(&v)
-    if err != nil {
-        log.Print(err)
-    }
+    _ = json.NewDecoder(resp.Body).Decode(&v)
 }
 
 func SetRegion(region string) {

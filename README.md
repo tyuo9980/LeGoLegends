@@ -2,6 +2,7 @@
 Go library for Riot's League of Legends API
 
 Contains support for:
+
 | Endpoint  | Version |
 | --------- | ------- |
 | Match     | v2.2    |

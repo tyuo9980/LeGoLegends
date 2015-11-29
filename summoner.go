@@ -2,7 +2,6 @@ package legolegends
 
 import (
     "fmt"
-    "log"
     "strings"
 )
 
@@ -50,58 +49,60 @@ type RuneSlot struct {
 
 func GetSummonerByNames(names ...string) (map[string]Summoner, error) {
     nameString := strings.Join([]string(names), ",")
-    log.Println(nameString)
 
     args := createArgs("")
     url := createApiUrl(SUMMONER_BY_NAME) + fmt.Sprintf("%v?%v", nameString, args)
 
-    log.Println(url)
     summoners := make(map[string]Summoner)
     err := decodeRequest(url, &summoners)
 
     return summoners, err
 }
 
-func GetSummonerByIds(ids ...string) map[string]Summoner {
+func GetSummonerByIds(ids ...string) (map[string]Summoner, error) {
     idString := strings.Join([]string(ids), ",")
+
     args := createArgs("")
-    url := createApiUrl(SUMMONER_BY_ID) + fmt.Sprintf("%d?%v", idString, args)
+    url := createApiUrl(SUMMONER_BY_ID) + fmt.Sprintf("%v?%v", idString, args)
 
     summoners := make(map[string]Summoner)
-    decodeRequest(url, &summoners)
+    err := decodeRequest(url, &summoners)
 
-    return summoners
+    return summoners, err
 }
 
-func GetSummonerMasteries(ids ...string) map[string]MasteryPages {
+func GetSummonerMasteries(ids ...string) (map[string]MasteryPages, error) {
     idString := strings.Join([]string(ids), ",")
+
     args := createArgs("")
-    url := createApiUrl(SUMMONER_MASTERIES) + fmt.Sprintf("%d?%v", idString, args)
+    url := createApiUrl(SUMMONER_MASTERIES) + fmt.Sprintf("%v?%v", idString, args)
 
     masteries := make(map[string]MasteryPages)
-    decodeRequest(url, &masteries)
+    err := decodeRequest(url, &masteries)
 
-    return masteries
+    return masteries, err
 }
 
-func GetSummonerRunes(ids ...string) map[string]RunePages {
+func GetSummonerRunes(ids ...string) (map[string]RunePages, error) {
     idString := strings.Join([]string(ids), ",")
+
     args := createArgs("")
-    url := createApiUrl(SUMMONER_RUNES) + fmt.Sprintf("%d?%v", idString, args)
+    url := createApiUrl(SUMMONER_RUNES) + fmt.Sprintf("%v?%v", idString, args)
 
     runes := make(map[string]RunePages)
-    decodeRequest(url, &runes)
+    err := decodeRequest(url, &runes)
 
-    return runes
+    return runes, err
 }
 
-func GetSummonerName(ids ...string) map[string]string {
+func GetSummonerName(ids ...string) (map[string]string, error) {
     idString := strings.Join([]string(ids), ",")
+
     args := createArgs("")
-    url := createApiUrl(SUMMONER_NAME) + fmt.Sprintf("%d?%v", idString, args)
+    url := createApiUrl(SUMMONER_NAME) + fmt.Sprintf("%v?%v", idString, args)
 
     names := make(map[string]string)
-    decodeRequest(url, &names)
+    err := decodeRequest(url, &names)
 
-    return names
+    return names, err
 }

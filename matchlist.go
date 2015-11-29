@@ -31,14 +31,14 @@ func GetMatchlist(
     beginTime int64,
     endTime int64,
     beginIndex int,
-    endIndex int) MatchList {
+    endIndex int) (MatchList, error) {
 
     argString := "championIds,rankedQueues,seasons,beginTime,endTime,beginIndex,endIndex"
     args := createArgs(argString, championIds, rankedQueues, seasons, beginTime, endTime, beginIndex, endIndex)
     url := createApiUrl(SUMMONER_BY_NAME) + fmt.Sprintf("%d?%v", summonerId, args)
 
     var matchList MatchList
-    decodeRequest(url, &matchList)
+    err := decodeRequest(url, &matchList)
 
-    return matchList
+    return matchList, err
 }

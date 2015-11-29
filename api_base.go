@@ -3,6 +3,7 @@ package legolegends
 import (
     "encoding/json"
     "fmt"
+    "log"
     "net/http"
     "strconv"
     "strings"
@@ -11,6 +12,7 @@ import (
 var (
     Region string
     ApiKey string
+    Debug  bool
 )
 
 const (
@@ -83,6 +85,10 @@ func createArgs(keys string, argVals ...interface{}) string {
 }
 
 func decodeRequest(url string, v interface{}) error {
+    if Debug {
+        log.Println("decodeRequest: " + url)
+    }
+
     resp, err := http.Get(url)
     if err != nil {
         return err
@@ -103,4 +109,8 @@ func SetRegion(region string) {
 
 func SetApiKey(key string) {
     ApiKey = key
+}
+
+func SetDebug(debug bool) {
+    Debug = debug
 }

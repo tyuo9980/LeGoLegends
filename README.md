@@ -9,12 +9,12 @@ Contains support for:
 | MatchList | v2.2    |
 | Summoner  | v1.4    |
 
-Import using:
+Install using:
 ```
 go get github.com/tyuo9980/legolegends
 ```
 
-# Getting started:
+# Getting started
 Before using, make sure an api key and region is set.
 ```
 legolegends.SetApiKey(key)

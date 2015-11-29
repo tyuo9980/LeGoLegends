@@ -66,14 +66,18 @@ func createArgs(keys string, argVals ...interface{}) string {
     args := "api_key=" + ApiKey
 
     for i, arg := range argVals {
-        var val string
+        var val string = ""
         switch arg.(type) {
         case bool:
             val = strconv.FormatBool(arg.(bool))
         case int:
-            val = strconv.Itoa(arg.(int))
+            if arg.(int) != -1 {
+                val = strconv.Itoa(arg.(int))
+            }
         case int64:
-            val = strconv.FormatInt(arg.(int64), 10)
+            if arg.(int64) != -1 {
+                val = strconv.FormatInt(arg.(int64), 10)
+            }
         default:
             val = arg.(string)
         }

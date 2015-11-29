@@ -12,7 +12,7 @@ import (
 var (
     Region string
     ApiKey string
-    Debug  bool
+    Debug  bool = false
 )
 
 const (

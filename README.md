@@ -3,7 +3,7 @@ Go library for Riot's League of Legends API
 
 Contains support for:
 Endpoint  | Version
-----------|--------
+--------- | -------
 Match     | v2.2
 MatchList | v2.2
 Summoner  | v1.4

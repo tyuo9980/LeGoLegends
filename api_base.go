@@ -18,19 +18,19 @@ var (
 const (
     CDN_ROOT string = "https://ddragon.leagueoflegends.com/cdn"
 
-    MATCH_LIST string = "v2.2/matchlist/by-summoner"
+    MATCH_LIST string = "v2.2/matchlist/by-summoner/"
 
-    MATCH string = "v2.2/match"
+    MATCH string = "v2.2/match/"
 
     SUMMONER_BY_NAME   string = "v1.4/summoner/by-name/"
-    SUMMONER_BY_ID     string = "v1.4/summoner"
-    SUMMONER_NAME      string = "v1.4/summoner"
-    SUMMONER_RUNES     string = "v1.4/summoner"
-    SUMMONER_MASTERIES string = "v1.4/summoner"
+    SUMMONER_BY_ID     string = "v1.4/summoner/"
+    SUMMONER_NAME      string = "v1.4/summoner/"
+    SUMMONER_RUNES     string = "v1.4/summoner/"
+    SUMMONER_MASTERIES string = "v1.4/summoner/"
 
-    STATIC_VERSION  string = "v1.2/versions"
-    STATIC_CHAMPION string = "v1.2/champion"
-    STATIC_ITEM     string = "v1.2/item"
+    STATIC_VERSION  string = "v1.2/versions/"
+    STATIC_CHAMPION string = "v1.2/champion/"
+    STATIC_ITEM     string = "v1.2/item/"
 )
 
 func NormalizeName(names ...string) []string {

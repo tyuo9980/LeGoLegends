@@ -13,13 +13,13 @@ type MatchList struct {
 
 type MatchReference struct {
     Timestamp  int64  `json:"timestamp"`
-    Champion   string `json:"champion"`
+    Champion   int64  `json:"champion"`
     Region     string `json:"region"`
     Queue      string `json:"queue"`
     Season     string `json:"season"`
     MatchId    int64  `json:"matchId"`
     Role       string `json:"role"`
-    PlatformId int64  `json:"platformId"`
+    PlatformId string `json:"platformId"`
     Lane       string `json:"lane"`
 }
 

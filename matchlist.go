@@ -24,7 +24,7 @@ type MatchReference struct {
 }
 
 func GetMatchlist(
-    summonerId string,
+    summonerId int64,
     championIds string,
     rankedQueues string,
     seasons string,

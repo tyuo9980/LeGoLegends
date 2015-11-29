@@ -230,7 +230,7 @@ type Position struct {
     Y   int `json:"y"`
 }
 
-func GeteMatch(matchId int64, includeTimeline bool) (MatchDetail, error) {
+func GetMatch(matchId int64, includeTimeline bool) (MatchDetail, error) {
     args := createArgs("includeTimeline", includeTimeline)
     url := createApiUrl(MATCH) + fmt.Sprintf("%d?%v", matchId, args)
 

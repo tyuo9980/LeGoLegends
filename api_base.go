@@ -82,7 +82,7 @@ func createArgs(keys string, argVals ...interface{}) string {
             val = arg.(string)
         }
 
-        args += fmt.Sprintf("?%v=%v", keyArray[i], val)
+        args += fmt.Sprintf("&%v=%v", keyArray[i], val)
     }
 
     return args

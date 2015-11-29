@@ -105,8 +105,10 @@ func decodeRequest(url string, v interface{}) error {
         return err
     }
 
+    log.Println(body)
+
     //err = json.NewDecoder(resp.Body).Decode(&v)
-    err = json.Unmarshal(body, v)
+    err = json.Unmarshal(body, &v)
     if err != nil {
         return err
     }

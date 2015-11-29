@@ -9,12 +9,6 @@ Contains support for:
 | MatchList | v2.2    |
 | Summoner  | v1.4    |
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
 Import using:
 ```
 go get github.com/tyuo9980/legolegends

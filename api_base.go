@@ -3,6 +3,7 @@ package legolegends
 import (
     "encoding/json"
     "fmt"
+    "io/ioutil"
     "log"
     "net/http"
     "strconv"
@@ -99,7 +100,13 @@ func decodeRequest(url string, v interface{}) error {
     }
     defer resp.Body.Close()
 
-    err = json.NewDecoder(resp.Body).Decode(&v)
+    body, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        return err
+    }
+
+    //err = json.NewDecoder(resp.Body).Decode(&v)
+    err = json.Unmarshal(body, v)
     if err != nil {
         return err
     }

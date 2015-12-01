@@ -75,7 +75,7 @@ func GetSummonerMasteries(ids ...string) (map[string]MasteryPages, error) {
 	idString := strings.Join([]string(ids), ",")
 
 	args := createArgs("")
-	url := createApiUrl(SUMMONER_MASTERIES) + fmt.Sprintf("%v?%v", idString, args)
+	url := createApiUrl(SUMMONER_MASTERIES) + fmt.Sprintf("%v/masteries?%v", idString, args)
 
 	masteries := make(map[string]MasteryPages)
 	err := decodeRequest(url, &masteries)
@@ -99,7 +99,7 @@ func GetSummonerName(ids ...string) (map[string]string, error) {
 	idString := strings.Join([]string(ids), ",")
 
 	args := createArgs("")
-	url := createApiUrl(SUMMONER_NAME) + fmt.Sprintf("%v/masteries?%v", idString, args)
+	url := createApiUrl(SUMMONER_NAME) + fmt.Sprintf("%v?%v", idString, args)
 
 	names := make(map[string]string)
 	err := decodeRequest(url, &names)

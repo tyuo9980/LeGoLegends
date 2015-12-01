@@ -25,7 +25,7 @@ type Game struct {
 	Statistics    RawStats     `json:"stats"`
 	SubType       string       `json:"subType"`
 	TeamID        int          `json:"teamId"`
-}G
+}
 
 type GamePlayer struct {
 	ChampionID int   `json:"championId"`

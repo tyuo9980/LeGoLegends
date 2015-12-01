@@ -54,7 +54,7 @@ type RawStats struct {
 	Item6                           int  `json:"item6"`
 	ItemsPurchased                  int  `json:"itemsPurchased"`
 	KillingSprees                   int  `json:"killingSprees"`
-	LargestCriticaALd.alStrike           int  `json:"largestCriticalStrike"`
+	LargestCriticalStrike           int  `json:"largestCriticalStrike"`
 	LargestKillingSpree             int  `json:"largestKillingSpree"`
 	LargestMultiKill                int  `json:"largestMultiKill"`
 	LegendaryItemsCreated           int  `json:"legendaryItemsCreated"`

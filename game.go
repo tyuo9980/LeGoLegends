@@ -25,7 +25,7 @@ type Game struct {
 	Statistics    RawStats     `json:"stats"`
 	SubType       string       `json:"subType"`
 	TeamID        int          `json:"teamId"`
-}
+}G
 
 type GamePlayer struct {
 	ChampionID int   `json:"championId"`
@@ -114,7 +114,7 @@ type RawStats struct {
 
 func GetRecentGames(summonerId int64) (RecentGames, error) {
 	args := createArgs("")
-	url := createApiUrl(GAME) + fmt.Sprintf("%v?%v", summonerId, args)
+	url := createApiUrl(GAME) + fmt.Sprintf("%v/recent?%v", summonerId, args)
 
 	var recentGames RecentGames
 	err := decodeRequest(url, &recentGames)

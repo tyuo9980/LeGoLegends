@@ -10,10 +10,10 @@ type RecentGames struct {
 }
 
 type Game struct {
-	ChampionID    int          `json:"championId"`
+	ChampionId    int          `json:"championId"`
 	CreateDate    int64        `json:"createDate"`
 	FellowPlayers []GamePlayer `json:"fellowPlayers"`
-	GameID        int64        `json:"gameId"`
+	GameId        int64        `json:"gameId"`
 	GameMode      string       `json:"gameMode"`
 	GameType      string       `json:"gameType"`
 	Invalid       bool         `json:"invalid"`
@@ -28,9 +28,9 @@ type Game struct {
 }
 
 type GamePlayer struct {
-	ChampionID int   `json:"championId"`
-	SummonerID int64 `json:"summonerId"`
-	TeamID     int   `json:"teamId"`
+	ChampionId int   `json:"championId"`
+	SummonerId int64 `json:"summonerId"`
+	TeamId     int   `json:"teamId"`
 }
 
 type RawStats struct {

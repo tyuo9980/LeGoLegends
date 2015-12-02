@@ -30,6 +30,9 @@ const (
 	SUMMONER_RUNES     string = "v1.4/summoner/"
 	SUMMONER_MASTERIES string = "v1.4/summoner/"
 
+	STATS_RANKED  string = "1.3/stats/by-summoner"
+	STATS_SUMMARY string = "1.3/stats/by-summoner/"
+
 	STATIC_VERSION  string = "v1.2/versions/"
 	STATIC_CHAMPION string = "v1.2/champion/"
 	STATIC_ITEM     string = "v1.2/item/"

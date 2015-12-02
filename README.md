@@ -8,6 +8,8 @@ Contains support for:
 | Match     | v2.2    |
 | MatchList | v2.2    |
 | Summoner  | v1.4    |
+| Game      | v1.3    |
+| Stats     | v1.3    |
 
 Install using:
 ```
@@ -23,5 +25,5 @@ legolegends.SetRegion(region)
 
 Debug mode is available by setting Debug to true
 ```
-legolegends.SetDebug(bool)
+legolegends.SetDebug(flag)
 ```

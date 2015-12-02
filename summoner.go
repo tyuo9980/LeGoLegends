@@ -32,7 +32,7 @@ type Mastery struct {
 
 type RunePages struct {
 	Pages      []RunePage `json:"pages"`
-	SummonerId int        `json:"summonerId"`
+	SummonerId int64      `json:"summonerId"`
 }
 
 type RunePage struct {

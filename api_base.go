@@ -10,9 +10,23 @@ import (
 )
 
 var (
-	Region string
-	ApiKey string
-	Debug  bool = false
+	Region     string
+	PlatformId string
+	ApiKey     string
+	Debug      bool = false
+
+
+	pidMap map[string]string = make(map[string]string)
+	pidMap["NA"] = "NA1"
+	pidMap["EUW"] = "EUW1"
+	pidMap["EUNE"] = "EUN1"
+	pidMap["KR"] = "KR"
+	pidMap["BR"] = "BR1"
+	pidMap["LAN"] = "LA1"
+	pidMap["LAS"] = "LA2"
+	pidMap["OCE"] = "OC1"
+	pidMap["RU"] = "RU"
+	pidMap["TR"] = "TR1"
 )
 
 const (
@@ -23,6 +37,8 @@ const (
 	MATCH string = "v2.2/match/"
 
 	GAME string = "v1.3/game/by-summoner/"
+
+	CURRENT_GAME string = "observer-mode/rest/consumer/getSpectatorGameInfo/"
 
 	SUMMONER_BY_NAME   string = "v1.4/summoner/by-name/"
 	SUMMONER_BY_ID     string = "v1.4/summoner/"
@@ -114,6 +130,7 @@ func decodeRequest(url string, v interface{}) error {
 
 func SetRegion(region string) {
 	Region = region
+	PlatformId = pidMap[region]
 }
 
 func SetApiKey(key string) {

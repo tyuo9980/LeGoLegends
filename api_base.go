@@ -15,18 +15,18 @@ var (
 	ApiKey     string
 	Debug      bool = false
 
-
-	pidMap map[string]string = make(map[string]string)
-	pidMap["NA"] = "NA1"
-	pidMap["EUW"] = "EUW1"
-	pidMap["EUNE"] = "EUN1"
-	pidMap["KR"] = "KR"
-	pidMap["BR"] = "BR1"
-	pidMap["LAN"] = "LA1"
-	pidMap["LAS"] = "LA2"
-	pidMap["OCE"] = "OC1"
-	pidMap["RU"] = "RU"
-	pidMap["TR"] = "TR1"
+	pidMap = map[string]string{
+		"NA":   "NA1",
+		"EUW":  "EUW1",
+		"EUNE": "EUN1",
+		"KR":   "KR",
+		"BR":   "BR1",
+		"LAN":  "LA1",
+		"LAS":  "LA2",
+		"OCE":  "OC1",
+		"RU":   "RU",
+		"TR":   "TR1",
+	}
 )
 
 const (

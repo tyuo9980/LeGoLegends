@@ -5,20 +5,20 @@ import (
 )
 
 type CurrentGameInfo struct {
-	BannedChampions   []BannedChampion         `json:"bannedChampion"`
-	GameId            int64                    `json:"gameId"`
-	GameLength        int64                    `json:"gameLength"`
-	GameMode          string                   `json:"gameMode"`
-	GameQueueConfigId int64                    `json:"gameQueueConfigId"`
-	GameStartTime     int64                    `json:"gameStartTime"`
-	GameType          string                   `json:"gameType"`
-	MapId             int64                    `json:"mapId"`
-	Observers         Observer                 `json:"observers"`
-	Participants      []CurrentGameParticipant `json:"participants"`
-	PlatformId        string                   `json:"platformId"`
+	BannedChampions   []CurrentGameBannedChampion `json:"bannedChampion"`
+	GameId            int64                       `json:"gameId"`
+	GameLength        int64                       `json:"gameLength"`
+	GameMode          string                      `json:"gameMode"`
+	GameQueueConfigId int64                       `json:"gameQueueConfigId"`
+	GameStartTime     int64                       `json:"gameStartTime"`
+	GameType          string                      `json:"gameType"`
+	MapId             int64                       `json:"mapId"`
+	Observers         Observer                    `json:"observers"`
+	Participants      []CurrentGameParticipant    `json:"participants"`
+	PlatformId        string                      `json:"platformId"`
 }
 
-type BannedChampion struct {
+type CurrentGameBannedChampion struct {
 	ChampionId int64 `json:"championId"`
 	PickTurn   int   `json:"pickTurn"`
 	TeamId     int64 `json:"teamId"`

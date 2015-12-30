@@ -11,6 +11,7 @@ Contains support for:
 | Game        | v1.3    |
 | Stats       | v1.3    |
 | CurrentGame | v1.0    |
+| League      | v2.5    |
 
 Install using:
 ```

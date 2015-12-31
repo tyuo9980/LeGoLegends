@@ -20,6 +20,7 @@ type LeagueEntry struct {
     IsInactive       bool       `json:"isInactive"`
     IsVeteran        bool       `json:"isVeteran"`
     LeaguePoints     int        `json:"leaguePoints"`
+    Losses           int        `json:"losses"`
     MiniSeries       MiniSeries `json:"miniSeries"`
     PlayerOrTeamId   string     `json:"playerOrTeamId"`
     PlayerOrTeamName string     `json:"playerOrTeamName"`

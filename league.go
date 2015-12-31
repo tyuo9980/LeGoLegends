@@ -14,20 +14,20 @@ type League struct {
 }
 
 type LeagueEntry struct {
-    Division         string     `json:"division"`
-    IsFreshBlood     bool       `json:"isFreshBlood"`
-    IsHotStreak      bool       `json:"isHotStreak"`
-    IsInactive       bool       `json:"isInactive"`
-    IsVeteran        bool       `json:"isVeteran"`
-    LeaguePoints     int        `json:"leaguePoints"`
-    Losses           int        `json:"losses"`
-    MiniSeriest      MiniSeries `json:"miniSeries"`
-    PlayerOrTeamId   string     `json:"playerOrTeamId"`
-    PlayerOrTeamName string     `json:"playerOrTeamName"`
-    Wins             int        `json:"wins"`
+    Division         string `json:"division"`
+    IsFreshBlood     bool   `json:"isFreshBlood"`
+    IsHotStreak      bool   `json:"isHotStreak"`
+    IsInactive       bool   `json:"isInactive"`
+    IsVeteran        bool   `json:"isVeteran"`
+    LeaguePoints     int    `json:"leaguePoints"`
+    Losses           int    `json:"losses"`
+    MiniSeries       Series `json:"miniSeries"`
+    PlayerOrTeamId   string `json:"playerOrTeamId"`
+    PlayerOrTeamName string `json:"playerOrTeamName"`
+    Wins             int    `json:"wins"`
 }
 
-type MiniSeries struct {
+type Series struct {
     Losses   int    `json:"losses"`
     Progress string `json:"progress"`
     Target   int    `json:"target"`

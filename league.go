@@ -34,11 +34,11 @@ type Series struct {
     Wins     int    `json:"wins"`
 }
 
-func GetLeagues(ids ...string) (map[string][]League, error) {
+func GetLeagues(region string, ids ...string) (map[string][]League, error) {
     nameString := strings.Join([]string(ids), ",")
 
     args := createArgs("")
-    url := createApiUrl(LEAGUE_BY_SUMMONER) + fmt.Sprintf("%v?%v", nameString, args)
+    url := createApiUrl(LEAGUE_BY_SUMMONER, region) + fmt.Sprintf("%v?%v", nameString, args)
 
     leagues := make(map[string][]League)
     err := decodeRequest(url, &leagues)
@@ -46,11 +46,11 @@ func GetLeagues(ids ...string) (map[string][]League, error) {
     return leagues, err
 }
 
-func GetLeagueEntries(ids ...string) (map[string][]League, error) {
+func GetLeagueEntries(region string, ids ...string) (map[string][]League, error) {
     nameString := strings.Join([]string(ids), ",")
 
     args := createArgs("")
-    url := createApiUrl(LEAGUE_BY_SUMMONER) + fmt.Sprintf("%v/entry?%v", nameString, args)
+    url := createApiUrl(LEAGUE_BY_SUMMONER, region) + fmt.Sprintf("%v/entry?%v", nameString, args)
 
     leagues := make(map[string][]League)
     err := decodeRequest(url, &leagues)
@@ -58,11 +58,11 @@ func GetLeagueEntries(ids ...string) (map[string][]League, error) {
     return leagues, err
 }
 
-func GetTeamLeagues(teamids ...string) (map[string][]League, error) {
+func GetTeamLeagues(region string, teamids ...string) (map[string][]League, error) {
     nameString := strings.Join([]string(teamids), ",")
 
     args := createArgs("")
-    url := createApiUrl(LEAGUE_BY_TEAM) + fmt.Sprintf("%v?%v", nameString, args)
+    url := createApiUrl(LEAGUE_BY_TEAM, region) + fmt.Sprintf("%v?%v", nameString, args)
 
     leagues := make(map[string][]League)
     err := decodeRequest(url, &leagues)
@@ -70,11 +70,11 @@ func GetTeamLeagues(teamids ...string) (map[string][]League, error) {
     return leagues, err
 }
 
-func GetTeamLeagueEntries(teamids ...string) (map[string][]League, error) {
+func GetTeamLeagueEntries(region string, teamids ...string) (map[string][]League, error) {
     nameString := strings.Join([]string(teamids), ",")
 
     args := createArgs("")
-    url := createApiUrl(LEAGUE_BY_TEAM) + fmt.Sprintf("%v/entry?%v", nameString, args)
+    url := createApiUrl(LEAGUE_BY_TEAM, region) + fmt.Sprintf("%v/entry?%v", nameString, args)
 
     leagues := make(map[string][]League)
     err := decodeRequest(url, &leagues)
@@ -82,9 +82,9 @@ func GetTeamLeagueEntries(teamids ...string) (map[string][]League, error) {
     return leagues, err
 }
 
-func GetChallengerLeagues(rankType string) (League, error) {
+func GetChallengerLeagues(region string, rankType string) (League, error) {
     args := createArgs("type", rankType)
-    url := createApiUrl(LEAGUE_CHALLENGER) + fmt.Sprintf("?%v", args)
+    url := createApiUrl(LEAGUE_CHALLENGER, region) + fmt.Sprintf("?%v", args)
 
     var leagues League
     err := decodeRequest(url, &leagues)
@@ -92,9 +92,9 @@ func GetChallengerLeagues(rankType string) (League, error) {
     return leagues, err
 }
 
-func GetMasterLeagues(rankType string) (League, error) {
+func GetMasterLeagues(region string, rankType string) (League, error) {
     args := createArgs("type", rankType)
-    url := createApiUrl(LEAGUE_MASTER) + fmt.Sprintf("?%v", args)
+    url := createApiUrl(LEAGUE_MASTER, region) + fmt.Sprintf("?%v", args)
 
     var leagues League
     err := decodeRequest(url, &leagues)

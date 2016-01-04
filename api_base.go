@@ -10,7 +10,6 @@ import (
 )
 
 var (
-    Region     string
     PlatformId string
     ApiKey     string
     Debug      bool = false
@@ -71,20 +70,20 @@ func NormalizeName(names ...string) []string {
     return nameList
 }
 
-func createApiUrl(endpoint string) string {
-    return fmt.Sprintf("https://%v.api.pvp.net/api/lol/%v/%v", Region, Region, endpoint)
+func createApiUrl(endpoint string, region string) string {
+    return fmt.Sprintf("https://%v.api.pvp.net/api/lol/%v/%v", region, region, endpoint)
 }
 
-func createStaticUrl(endpoint string) string {
-    return fmt.Sprintf("https://%v.api.pvp.net/api/lol/static-data/%v/%v", Region, Region, endpoint)
+func createStaticUrl(endpoint string, region string) string {
+    return fmt.Sprintf("https://%v.api.pvp.net/api/lol/static-data/%v/%v", region, region, endpoint)
 }
 
-func createObserverUrl(endpoint string) string {
-    return fmt.Sprintf("https://%v.api.pvp.net/observer-mode/rest/%v", Region, endpoint)
+func createObserverUrl(endpoint string, region string) string {
+    return fmt.Sprintf("https://%v.api.pvp.net/observer-mode/rest/%v", region, endpoint)
 }
 
-func createShardUrl(endpoint string) string {
-    return fmt.Sprintf("https://%v.api.pvp.net/shards/%v", Region, endpoint)
+func createShardUrl(endpoint string, region string) string {
+    return fmt.Sprintf("https://%v.api.pvp.net/shards/%v", region, endpoint)
 }
 
 func createArgs(keys string, argVals ...interface{}) string {
@@ -131,11 +130,6 @@ func decodeRequest(url string, v interface{}) error {
     }
 
     return err
-}
-
-func SetRegion(region string) {
-    Region = region
-    PlatformId = pidMap[region]
 }
 
 func SetApiKey(key string) {

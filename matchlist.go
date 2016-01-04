@@ -24,6 +24,7 @@ type MatchReference struct {
 }
 
 func GetMatchlist(
+    region string,
     summonerId int64,
     championIds string,
     rankedQueues string,
@@ -35,7 +36,7 @@ func GetMatchlist(
 
     argString := "championIds,rankedQueues,seasons,beginTime,endTime,beginIndex,endIndex"
     args := createArgs(argString, championIds, rankedQueues, seasons, beginTime, endTime, beginIndex, endIndex)
-    url := createApiUrl(MATCH_LIST) + fmt.Sprintf("%d?%v", summonerId, args)
+    url := createApiUrl(MATCH_LIST, region) + fmt.Sprintf("%d?%v", summonerId, args)
 
     var matchList MatchList
     err := decodeRequest(url, &matchList)

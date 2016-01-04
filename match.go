@@ -230,9 +230,9 @@ type Position struct {
     Y   int `json:"y"`
 }
 
-func GetMatch(matchId int64, includeTimeline bool) (MatchDetail, error) {
+func GetMatch(region string, matchId int64, includeTimeline bool) (MatchDetail, error) {
     args := createArgs("includeTimeline", includeTimeline)
-    url := createApiUrl(MATCH) + fmt.Sprintf("%d?%v", matchId, args)
+    url := createApiUrl(MATCH, region) + fmt.Sprintf("%d?%v", matchId, args)
 
     var matchDetail MatchDetail
     err := decodeRequest(url, &matchDetail)

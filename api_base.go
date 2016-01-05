@@ -132,6 +132,12 @@ func decodeRequest(url string, v interface{}) error {
     return err
 }
 
+func EncodeStruct(v interface{}) (string, error) {
+    jsonString, err := json.Marshal(v)
+
+    return string(jsonString), err
+}
+
 func SetApiKey(key string) {
     ApiKey = key
 }

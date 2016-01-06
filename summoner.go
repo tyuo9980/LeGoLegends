@@ -99,7 +99,7 @@ func GetSummonerName(region string, ids ...string) (map[string]string, error) {
     idString := strings.Join([]string(ids), ",")
 
     args := createArgs("")
-    url := createApiUrl(SUMMONER_NAME, region) + fmt.Sprintf("%v?%v", idString, args)
+    url := createApiUrl(SUMMONER_NAME, region) + fmt.Sprintf("%v/name?%v", idString, args)
 
     names := make(map[string]string)
     err := decodeRequest(url, &names)

@@ -29,7 +29,67 @@ var (
     }
 
     rateDelay int
+
+    smallRateChan rateChan
+    longRateChan  rateChan
 )
+
+type rateChan struct {
+    RateQueue   chan bool
+    TriggerChan chan bool
+}
+
+func SetSmallRateLimit(numrequests int, pertime time.Duration) {
+    smallRateChan = rateChan{
+        RateQueue:   make(chan bool, numrequests),
+        TriggerChan: make(chan bool),
+    }
+    go rateLimitHandler(smallRateChan, pertime)
+}
+
+//SetLongRateLimit allows a custom rate limit to be set. For at the time of this writing the default
+//for a development API key is 500 requests every 10 minutes
+func SetLongRateLimit(numrequests int, pertime time.Duration) {
+    longRateChan = rateChan{
+        RateQueue:   make(chan bool, numrequests),
+        TriggerChan: make(chan bool),
+    }
+    go rateLimitHandler(longRateChan, pertime)
+}
+
+func rateLimitHandler(RateChan rateChan, pertime time.Duration) {
+    returnChan := make(chan bool)
+    go timeTriggerWatcher(RateChan.TriggerChan, returnChan)
+    for {
+        <-returnChan
+        <-time.After(pertime)
+        go timeTriggerWatcher(RateChan.TriggerChan, returnChan)
+        length := len(RateChan.RateQueue)
+        for i := 0; i < length; i++ {
+            <-RateChan.RateQueue
+        }
+    }
+}
+
+func timeTriggerWatcher(timeTrigger chan bool, returnChan chan bool) {
+    timeTrigger <- true
+    returnChan <- true
+}
+
+func checkRateLimiter(RateChan rateChan) {
+    if RateChan.RateQueue != nil && RateChan.TriggerChan != nil {
+        RateChan.RateQueue <- true
+    }
+}
+
+func checkTimeTrigger(RateChan rateChan) {
+    if RateChan.RateQueue != nil && RateChan.TriggerChan != nil {
+        select {
+        case <-RateChan.TriggerChan:
+        default:
+        }
+    }
+}
 
 const (
     CDN_ROOT string = "https://ddragon.leagueoflegends.com/cdn"
@@ -120,6 +180,8 @@ func decodeRequest(url string, v interface{}) error {
     if Debug {
         log.Println("decodeRequest: " + url)
     }
+    checkRateLimiter(smallRateChan)
+    checkRateLimiter(longRateChan)
 
     time.Sleep(time.Second)
 
@@ -128,6 +190,9 @@ func decodeRequest(url string, v interface{}) error {
         return err
     }
     defer resp.Body.Close()
+
+    checkTimeTrigger(smallRateChan)
+    checkTimeTrigger(longRateChan)
 
     err = json.NewDecoder(resp.Body).Decode(&v)
     if err != nil {

@@ -121,7 +121,7 @@ func decodeRequest(url string, v interface{}) error {
         log.Println("decodeRequest: " + url)
     }
 
-    time.Sleep(time.Duration(rateDelay) * time.Millisecond)
+    time.Sleep(time.Second)
 
     resp, err := http.Get(url)
     if err != nil {

@@ -7,6 +7,7 @@ import (
     "net/http"
     "strconv"
     "strings"
+    "time"
 )
 
 var (
@@ -26,6 +27,8 @@ var (
         "RU":   "RU",
         "TR":   "TR1",
     }
+
+    rateDelay int
 )
 
 const (
@@ -118,6 +121,8 @@ func decodeRequest(url string, v interface{}) error {
         log.Println("decodeRequest: " + url)
     }
 
+    time.Sleep(time.Duration(rateDelay) * time.Millisecond)
+
     resp, err := http.Get(url)
     if err != nil {
         return err
@@ -144,4 +149,8 @@ func SetApiKey(key string) {
 
 func SetDebug(debug bool) {
     Debug = debug
+}
+
+func SetRateLimit(rate int, burst int) {
+    rateDelay = 1000 / rate
 }

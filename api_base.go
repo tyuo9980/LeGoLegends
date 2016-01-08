@@ -28,68 +28,8 @@ var (
         "TR":   "TR1",
     }
 
-    rateDelay int
-
-    smallRateChan rateChan
-    longRateChan  rateChan
+    requestChannel = make(chan bool, 1)
 )
-
-type rateChan struct {
-    RateQueue   chan bool
-    TriggerChan chan bool
-}
-
-func SetSmallRateLimit(numrequests int, pertime time.Duration) {
-    smallRateChan = rateChan{
-        RateQueue:   make(chan bool, numrequests),
-        TriggerChan: make(chan bool),
-    }
-    go rateLimitHandler(smallRateChan, pertime)
-}
-
-//SetLongRateLimit allows a custom rate limit to be set. For at the time of this writing the default
-//for a development API key is 500 requests every 10 minutes
-func SetLongRateLimit(numrequests int, pertime time.Duration) {
-    longRateChan = rateChan{
-        RateQueue:   make(chan bool, numrequests),
-        TriggerChan: make(chan bool),
-    }
-    go rateLimitHandler(longRateChan, pertime)
-}
-
-func rateLimitHandler(RateChan rateChan, pertime time.Duration) {
-    returnChan := make(chan bool)
-    go timeTriggerWatcher(RateChan.TriggerChan, returnChan)
-    for {
-        <-returnChan
-        <-time.After(pertime)
-        go timeTriggerWatcher(RateChan.TriggerChan, returnChan)
-        length := len(RateChan.RateQueue)
-        for i := 0; i < length; i++ {
-            <-RateChan.RateQueue
-        }
-    }
-}
-
-func timeTriggerWatcher(timeTrigger chan bool, returnChan chan bool) {
-    timeTrigger <- true
-    returnChan <- true
-}
-
-func checkRateLimiter(RateChan rateChan) {
-    if RateChan.RateQueue != nil && RateChan.TriggerChan != nil {
-        RateChan.RateQueue <- true
-    }
-}
-
-func checkTimeTrigger(RateChan rateChan) {
-    if RateChan.RateQueue != nil && RateChan.TriggerChan != nil {
-        select {
-        case <-RateChan.TriggerChan:
-        default:
-        }
-    }
-}
 
 const (
     CDN_ROOT string = "https://ddragon.leagueoflegends.com/cdn"
@@ -177,22 +117,17 @@ func createArgs(keys string, argVals ...interface{}) string {
 }
 
 func decodeRequest(url string, v interface{}) error {
+    requestChannel <- true
+
     if Debug {
         log.Println("decodeRequest: " + url)
     }
-    checkRateLimiter(smallRateChan)
-    checkRateLimiter(longRateChan)
-
-    time.Sleep(time.Second)
 
     resp, err := http.Get(url)
     if err != nil {
         return err
     }
     defer resp.Body.Close()
-
-    checkTimeTrigger(smallRateChan)
-    checkTimeTrigger(longRateChan)
 
     err = json.NewDecoder(resp.Body).Decode(&v)
     if err != nil {
@@ -216,6 +151,16 @@ func SetDebug(debug bool) {
     Debug = debug
 }
 
-func SetRateLimit(rate int, burst int) {
-    rateDelay = 1000 / rate
+func SetRateLimit(num int, time int) {
+    requestChannel = make(chan bool, num/time)
+    go rateLimitHandler()
+}
+
+func rateLimitHandler() {
+    for {
+        time.Sleep(time.Second)
+        for i := 0; i < len(requestChannel); i++ {
+            <-requestChannel
+        }
+    }
 }

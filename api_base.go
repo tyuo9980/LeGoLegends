@@ -154,6 +154,7 @@ func SetDebug(debug bool) {
 
 func SetRateLimit(rps int) {
     for _, pid := range pidMap {
+        log.Println(pid)
         requestChannel := make(chan bool, rps)
         requestChannelMap[pid] = requestChannel
         go rateLimitHandler(requestChannel)

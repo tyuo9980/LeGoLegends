@@ -28,7 +28,7 @@ var (
         "TR":   "TR1",
     }
 
-    requestChannelMap map[string]chan bool
+    requestChannelMap = make(map[string]chan bool)
 )
 
 const (

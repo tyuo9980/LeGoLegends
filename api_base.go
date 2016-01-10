@@ -16,16 +16,16 @@ var (
     Debug      bool = false
 
     pidMap = map[string]string{
-        "NA":   "NA1",
-        "EUW":  "EUW1",
-        "EUNE": "EUN1",
-        "KR":   "KR",
-        "BR":   "BR1",
-        "LAN":  "LA1",
-        "LAS":  "LA2",
-        "OCE":  "OC1",
-        "RU":   "RU",
-        "TR":   "TR1",
+        "na":   "NA1",
+        "euw":  "EUW1",
+        "eune": "EUN1",
+        "kr":   "KR",
+        "br":   "BR1",
+        "lan":  "LA1",
+        "las":  "LA2",
+        "oce":  "OC1",
+        "ru":   "RU",
+        "tr":   "TR1",
     }
 
     requestChannelMap = make(map[string]chan bool)
@@ -118,7 +118,6 @@ func createArgs(keys string, argVals ...interface{}) string {
 
 func decodeRequest(region string, url string, v interface{}) error {
     pid := pidMap[region]
-    log.Println(pid)
     requestChannelMap[pid] <- true
 
     if Debug {
@@ -155,7 +154,6 @@ func SetDebug(debug bool) {
 
 func SetRateLimit(rps int) {
     for _, pid := range pidMap {
-        log.Println(pid)
         requestChannel := make(chan bool, rps)
         requestChannelMap[pid] = requestChannel
         go rateLimitHandler(requestChannel)

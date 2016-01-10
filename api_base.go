@@ -2,6 +2,7 @@ package legolegends
 
 import (
     "encoding/json"
+    "errors"
     "fmt"
     "log"
     "net/http"
@@ -129,6 +130,29 @@ func decodeRequest(region string, url string, v interface{}) error {
         return err
     }
     defer resp.Body.Close()
+
+    /*
+       400	Bad request
+       401	Unauthorized
+       404	No summoner data found for any specified inputs
+       429	Rate limit exceeded
+       500	Internal server error
+       503	Service unavailable
+    */
+
+    if resp.StatusCode == http.StatusBadRequest {
+        return errors.New("400")
+    } else if resp.StatusCode == http.StatusUnauthorized {
+        return errors.New("401")
+    } else if resp.StatusCode == http.StatusNotFound {
+        return errors.New("404")
+    } else if resp.StatusCode == 429 {
+        return errors.New("429")
+    } else if resp.StatusCode == http.StatusInternalServerError {
+        return errors.New("500")
+    } else if resp.StatusCode == http.StatusServiceUnavailable {
+        return errors.New("503")
+    }
 
     err = json.NewDecoder(resp.Body).Decode(&v)
     if err != nil {

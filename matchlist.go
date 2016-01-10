@@ -39,7 +39,7 @@ func GetMatchlist(
     url := createApiUrl(MATCH_LIST, region) + fmt.Sprintf("%d?%v", summonerId, args)
 
     var matchList MatchList
-    err := decodeRequest(url, &matchList)
+    err := decodeRequest(region, url, &matchList)
 
     return matchList, err
 }

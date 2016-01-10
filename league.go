@@ -41,7 +41,7 @@ func GetLeagues(region string, ids ...string) (map[string][]League, error) {
     url := createApiUrl(LEAGUE_BY_SUMMONER, region) + fmt.Sprintf("%v?%v", nameString, args)
 
     leagues := make(map[string][]League)
-    err := decodeRequest(url, &leagues)
+    err := decodeRequest(region, url, &leagues)
 
     return leagues, err
 }
@@ -53,7 +53,7 @@ func GetLeagueEntries(region string, ids ...string) (map[string][]League, error)
     url := createApiUrl(LEAGUE_BY_SUMMONER, region) + fmt.Sprintf("%v/entry?%v", nameString, args)
 
     leagues := make(map[string][]League)
-    err := decodeRequest(url, &leagues)
+    err := decodeRequest(region, url, &leagues)
 
     return leagues, err
 }
@@ -65,7 +65,7 @@ func GetTeamLeagues(region string, teamids ...string) (map[string][]League, erro
     url := createApiUrl(LEAGUE_BY_TEAM, region) + fmt.Sprintf("%v?%v", nameString, args)
 
     leagues := make(map[string][]League)
-    err := decodeRequest(url, &leagues)
+    err := decodeRequest(region, url, &leagues)
 
     return leagues, err
 }
@@ -77,7 +77,7 @@ func GetTeamLeagueEntries(region string, teamids ...string) (map[string][]League
     url := createApiUrl(LEAGUE_BY_TEAM, region) + fmt.Sprintf("%v/entry?%v", nameString, args)
 
     leagues := make(map[string][]League)
-    err := decodeRequest(url, &leagues)
+    err := decodeRequest(region, url, &leagues)
 
     return leagues, err
 }
@@ -87,7 +87,7 @@ func GetChallengerLeagues(region string, rankType string) (League, error) {
     url := createApiUrl(LEAGUE_CHALLENGER, region) + fmt.Sprintf("?%v", args)
 
     var leagues League
-    err := decodeRequest(url, &leagues)
+    err := decodeRequest(region, url, &leagues)
 
     return leagues, err
 }
@@ -97,7 +97,7 @@ func GetMasterLeagues(region string, rankType string) (League, error) {
     url := createApiUrl(LEAGUE_MASTER, region) + fmt.Sprintf("?%v", args)
 
     var leagues League
-    err := decodeRequest(url, &leagues)
+    err := decodeRequest(region, url, &leagues)
 
     return leagues, err
 }

@@ -235,7 +235,7 @@ func GetMatch(region string, matchId int64, includeTimeline bool) (MatchDetail, 
     url := createApiUrl(MATCH, region) + fmt.Sprintf("%d?%v", matchId, args)
 
     var matchDetail MatchDetail
-    err := decodeRequest(url, &matchDetail)
+    err := decodeRequest(region, url, &matchDetail)
 
     return matchDetail, err
 }

@@ -117,7 +117,7 @@ func GetRecentGames(region string, summonerId int64) (RecentGames, error) {
     url := createApiUrl(GAME, region) + fmt.Sprintf("%v/recent?%v", summonerId, args)
 
     var recentGames RecentGames
-    err := decodeRequest(url, &recentGames)
+    err := decodeRequest(region, url, &recentGames)
 
     return recentGames, err
 }

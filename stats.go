@@ -91,7 +91,7 @@ func GetRankedStats(region string, summonerId int64, season string) (RankedStats
     url := createApiUrl(STATS_RANKED, region) + fmt.Sprintf("%d/ranked?%v", summonerId, args)
 
     var rankedStats RankedStats
-    err := decodeRequest(url, &rankedStats)
+    err := decodeRequest(region, url, &rankedStats)
 
     return rankedStats, err
 }
@@ -101,7 +101,7 @@ func GetStatsSummary(region string, summonerId int64, season string) (PlayerStat
     url := createApiUrl(STATS_SUMMARY, region) + fmt.Sprintf("%d/summary?%v", summonerId, args)
 
     var playerStatsSummaryList PlayerStatsSummaryList
-    err := decodeRequest(url, &playerStatsSummaryList)
+    err := decodeRequest(region, url, &playerStatsSummaryList)
 
     return playerStatsSummaryList, err
 }

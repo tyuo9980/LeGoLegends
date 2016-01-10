@@ -56,7 +56,7 @@ func GetSpectatorGameInfo(region string, summonerId int64) (CurrentGameInfo, err
     url := createApiUrl(CURRENT_GAME, region) + fmt.Sprintf("%v/%d?%v", PlatformId, summonerId, args)
 
     var currentGameInfo CurrentGameInfo
-    err := decodeRequest(url, &currentGameInfo)
+    err := decodeRequest(region, url, &currentGameInfo)
 
     return currentGameInfo, err
 }

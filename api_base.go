@@ -28,7 +28,7 @@ var (
         "TR":   "TR1",
     }
 
-    requestChannel = make(chan bool, 1)
+    requestChannelMap map[string]chan bool
 )
 
 const (
@@ -116,8 +116,9 @@ func createArgs(keys string, argVals ...interface{}) string {
     return args
 }
 
-func decodeRequest(url string, v interface{}) error {
-    requestChannel <- true
+func decodeRequest(region string, url string, v interface{}) error {
+    pid := pidMap[region]
+    requestChannelMap[pid] <- true
 
     if Debug {
         log.Println("decodeRequest: " + url)
@@ -151,12 +152,15 @@ func SetDebug(debug bool) {
     Debug = debug
 }
 
-func SetRateLimit(num int, time int) {
-    requestChannel = make(chan bool, num/time)
-    go rateLimitHandler()
+func SetRateLimit(rps int) {
+    for _, pid := range pidMap {
+        requestChannel := make(chan bool, rps)
+        requestChannelMap[pid] = requestChannel
+        go rateLimitHandler(requestChannel)
+    }
 }
 
-func rateLimitHandler() {
+func rateLimitHandler(requestChannel chan bool) {
     for {
         time.Sleep(time.Second)
         for i := 0; i < len(requestChannel); i++ {

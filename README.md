@@ -19,13 +19,14 @@ go get github.com/tyuo9980/legolegends
 ```
 
 # Getting started
-Before using, make sure an api key and region is set.
+Before using, make sure an api key, region, and rate limit is set.
 ```
 legolegends.SetApiKey(key)
 legolegends.SetRegion(region)
+legolegends.SetRateLimit(rps)
 ```
 
-Debug mode is available by setting Debug to true
+Debug mode can be used to track call executing and errors.
 ```
 legolegends.SetDebug(flag)
 ```

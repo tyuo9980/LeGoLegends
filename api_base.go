@@ -131,26 +131,23 @@ func decodeRequest(region string, url string, v interface{}) error {
     }
     defer resp.Body.Close()
 
-    /*
-       400	Bad request
-       401	Unauthorized
-       404	No summoner data found for any specified inputs
-       429	Rate limit exceeded
-       500	Internal server error
-       503	Service unavailable
-    */
-
     if resp.StatusCode == http.StatusBadRequest {
+        log.Println("400 Bad request")
         return errors.New("400")
     } else if resp.StatusCode == http.StatusUnauthorized {
+        log.Println("401 Unauthorized - API key may not be set")
         return errors.New("401")
     } else if resp.StatusCode == http.StatusNotFound {
+        log.Println("404 No summoner data found for any specified inputs")
         return errors.New("404")
     } else if resp.StatusCode == 429 {
+        log.Println("429 Rate limit exceeded")
         return errors.New("429")
     } else if resp.StatusCode == http.StatusInternalServerError {
+        log.Println("500 Rito pls")
         return errors.New("500")
     } else if resp.StatusCode == http.StatusServiceUnavailable {
+        log.Println("503 Rito servers unavailable")
         return errors.New("503")
     }
 

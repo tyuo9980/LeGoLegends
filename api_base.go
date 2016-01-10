@@ -118,6 +118,7 @@ func createArgs(keys string, argVals ...interface{}) string {
 
 func decodeRequest(region string, url string, v interface{}) error {
     pid := pidMap[region]
+    log.Println(pid)
     requestChannelMap[pid] <- true
 
     if Debug {

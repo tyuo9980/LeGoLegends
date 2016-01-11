@@ -173,17 +173,17 @@ func SetDebug(debug bool) {
     Debug = debug
 }
 
-func SetRateLimit(rps int) {
+func SetRateLimit(rate int, delay int) {
     for _, pid := range pidMap {
-        requestChannel := make(chan bool, rps)
+        requestChannel := make(chan bool, rate)
         requestChannelMap[pid] = requestChannel
-        go rateLimitHandler(requestChannel)
+        go rateLimitHandler(requestChannel, delay)
     }
 }
 
-func rateLimitHandler(requestChannel chan bool) {
+func rateLimitHandler(requestChannel chan bool, delay int) {
     for {
-        time.Sleep(time.Second)
+        time.Sleep(time.Duration(delay) * time.Millisecond)
         for i := 0; i < len(requestChannel); i++ {
             <-requestChannel
         }

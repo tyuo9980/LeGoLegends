@@ -23,7 +23,7 @@ Before using, make sure an api key, region, and rate limit is set.
 ```
 legolegends.SetApiKey(key)
 legolegends.SetRegion(region)
-legolegends.SetRateLimit(rps)
+legolegends.SetRateLimit(rate, delay)
 ```
 
 Debug mode can be used to track call executing and errors.

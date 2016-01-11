@@ -165,6 +165,12 @@ func EncodeStruct(v interface{}) (string, error) {
     return string(jsonString), err
 }
 
+func DecodeString(jsonString string, v interface{}) error {
+    err := json.Unmarshal([]byte(jsonString), v)
+
+    return err
+}
+
 func SetApiKey(key string) {
     ApiKey = key
 }

@@ -62,10 +62,10 @@ const (
     STATIC_ITEM     string = "v1.2/item/"
 )
 
-func NormalizeName(names ...string) []string {
-    var nameList []string
+func NormalizeNames(names ...string) []string {
+    nameList := []string(names)
 
-    for i, name := range names {
+    for i, name := range nameList {
         name = strings.Replace(name, " ", "", -1)
         name = strings.ToLower(name)
         nameList[i] = name

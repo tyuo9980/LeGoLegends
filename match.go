@@ -23,15 +23,15 @@ type MatchDetail struct {
 }
 
 type Participant struct {
-    ChampionID                int                 `json:"championId"`
+    ChampionId                int                 `json:"championId"`
     HighestAchievedSeasonTier string              `json:"highestAchievedSeasonTier"`
     Masteries                 []MatchMastery      `json:"masteries"`
-    ParticipantID             int                 `json:"participantId"`
+    ParticipantId             int                 `json:"participantId"`
     Runes                     []MatchRune         `json:"runes"`
     Spell1Id                  int                 `json:"spell1Id"`
     Spell2Id                  int                 `json:"spell2Id"`
     Stats                     ParticipantStats    `json:"stats"`
-    TeamID                    int                 `json:"teamId"`
+    TeamId                    int                 `json:"teamId"`
     Timeline                  ParticipantTimeline `json:"timeline"`
 }
 
@@ -53,7 +53,7 @@ type Team struct {
     FirstTower           bool             `json:"firstTower"`
     InhibitorKills       int              `json:"inhibitorKills"`
     RiftHeraldKills      int              `json:"riftHeraldKills"`
-    TeamID               int              `json:"teamId"`
+    TeamId               int              `json:"teamId"`
     TowerKills           int              `json:"towerKills"`
     VilemawKills         int              `json:"vilemawKills"`
     Winner               bool             `json:"winner"`
@@ -202,7 +202,7 @@ type Event struct {
     EventType               string        `json:"eventType"`
     ItemAfter               int           `json:"itemAfter"`
     ItemBefore              int           `json:"itemBefore"`
-    ItemID                  int           `json:"itemId"`
+    ItemId                  int           `json:"itemId"`
     KillerId                int           `json:"killerId"`
     LaneType                string        `json:"laneType"`
     LevelUpType             string        `json:"levelUpType"`

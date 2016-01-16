@@ -19,7 +19,7 @@ type Game struct {
     Invalid       bool         `json:"invalid"`
     IPEarned      int          `json:"ipEarned"`
     Level         int          `json:"level"`
-    MapID         int          `json:"mapId"`
+    MapId         int          `json:"mapId"`
     Spell1        int          `json:"spell1"`
     Spell2        int          `json:"spell2"`
     Statistics    RawStats     `json:"stats"`

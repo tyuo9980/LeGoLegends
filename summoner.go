@@ -19,13 +19,13 @@ type MasteryPages struct {
 }
 
 type MasteryPage struct {
-    Id        int64     `json:"id"`
-    Name      string    `json:"name"`
-    Current   bool      `json:"current"`
-    Masteries []Mastery `json:"masteries"`
+    Id        int64         `json:"id"`
+    Name      string        `json:"name"`
+    Current   bool          `json:"current"`
+    Masteries []MasterySlot `json:"masteries"`
 }
 
-type Mastery struct {
+type MasterySlot struct {
     Id   int `json:"id"`
     Rank int `json:"rank"`
 }

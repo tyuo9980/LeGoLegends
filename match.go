@@ -27,7 +27,7 @@ type Participant struct {
     HighestAchievedSeasonTier string              `json:"highestAchievedSeasonTier"`
     Masteries                 []MatchMastery      `json:"masteries"`
     ParticipantID             int                 `json:"participantId"`
-    Runes                     []Rune              `json:"runes"`
+    Runes                     []MatchRune         `json:"runes"`
     Spell1Id                  int                 `json:"spell1Id"`
     Spell2Id                  int                 `json:"spell2Id"`
     Stats                     ParticipantStats    `json:"stats"`
@@ -159,7 +159,7 @@ type ParticipantTimeline struct {
     XpPerMinDeltas                  ParticipantTimelineData `json:"xpPerMinDeltas"`
 }
 
-type Rune struct {
+type MatchRune struct {
     RuneId int64 `json:"runeId"`
     Rank   int64 `json:"rank"`
 }
@@ -196,22 +196,22 @@ type ParticipantTimelineData struct {
 
 type Event struct {
     AscendedType            string        `json:"ascendedType"`
-    AssistingParticipantIDs []int         `json:"assistingParticipantIds"`
+    AssistingParticipantIds []int         `json:"assistingParticipantIds"`
     BuildingType            string        `json:"buildingType"`
-    CreatorID               int           `json:"creatorId"`
+    CreatorId               int           `json:"creatorId"`
     EventType               string        `json:"eventType"`
     ItemAfter               int           `json:"itemAfter"`
     ItemBefore              int           `json:"itemBefore"`
     ItemID                  int           `json:"itemId"`
-    KillerID                int           `json:"killerId"`
+    KillerId                int           `json:"killerId"`
     LaneType                string        `json:"laneType"`
     LevelUpType             string        `json:"levelUpType"`
     MonsterType             string        `json:"monsterType"`
-    ParticipantID           int           `json:"participantId"`
+    ParticipantId           int           `json:"participantId"`
     PointCaptured           string        `json:"pointCaptured"`
     Position                MatchPosition `json:"position"`
     SkillSlot               int           `json:"skillSlot"`
-    TeamID                  int           `json:"teamId"`
+    TeamId                  int           `json:"teamId"`
     Timestamp               int64         `json:"timestamp"`
     TowerType               string        `json:"towerType"`
     VictimId                int           `json:"victimId"`
@@ -224,7 +224,7 @@ type ParticipantFrame struct {
     JungleMinionsKilled int           `json:"jungleMinionsKilled"`
     Level               int           `json:"level"`
     MinionsKilled       int           `json:"minionsKilled"`
-    ParticipantID       int           `json:"participantId"`
+    ParticipantId       int           `json:"participantId"`
     Position            MatchPosition `json:"position"`
     TotalGold           int           `json:"totalGold"`
     Xp                  int           `json:"xp"`

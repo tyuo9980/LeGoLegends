@@ -11,8 +11,8 @@ type RankedStats struct {
 }
 
 type ChampionStats struct {
-    Id    int             `json:"id"`
-    Stats AggregatedStats `json:"stats"`
+    Id    int                  `json:"id"`
+    Stats StatsAggregatedStats `json:"stats"`
 }
 
 type PlayerStatsSummaryList struct {
@@ -21,14 +21,14 @@ type PlayerStatsSummaryList struct {
 }
 
 type PlayerStatsSummary struct {
-    AggregatedStats       AggregatedStats `json:"aggregatedStats"`
-    Losses                int             `json:"losses"`
-    ModifyDate            int64           `json:"modifyDate"`
-    PlayerStatSummaryType string          `json:"playerStatSummaryType"`
-    Wins                  int             `json:"wins"`
+    AggregatedStats       StatsAggregatedStats `json:"aggregatedStats"`
+    Losses                int                  `json:"losses"`
+    ModifyDate            int64                `json:"modifyDate"`
+    PlayerStatSummaryType string               `json:"playerStatSummaryType"`
+    Wins                  int                  `json:"wins"`
 }
 
-type AggregatedStats struct {
+type StatsAggregatedStats struct {
     AverageAssists              int `json:"averageAssists"`
     AverageChampionsKilled      int `json:"averageChampionsKilled"`
     AverageCombatPlayerScore    int `json:"averageCombatPlayerScore"`

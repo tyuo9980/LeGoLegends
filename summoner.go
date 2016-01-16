@@ -26,8 +26,8 @@ type MasteryPage struct {
 }
 
 type Mastery struct {
-    Id   int64 `json:"id"`
-    Rank int64 `json:"rank"`
+    Id   int `json:"id"`
+    Rank int `json:"rank"`
 }
 
 type RunePages struct {

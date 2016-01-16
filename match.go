@@ -25,7 +25,7 @@ type MatchDetail struct {
 type Participant struct {
     ChampionID                int                 `json:"championId"`
     HighestAchievedSeasonTier string              `json:"highestAchievedSeasonTier"`
-    Masteries                 []Mastery           `json:"masteries"`
+    Masteries                 []MatchMastery      `json:"masteries"`
     ParticipantID             int                 `json:"participantId"`
     Runes                     []Rune              `json:"runes"`
     Spell1Id                  int                 `json:"spell1Id"`
@@ -160,8 +160,13 @@ type ParticipantTimeline struct {
 }
 
 type Rune struct {
-    Rank   int64 `json:"rank"`
     RuneId int64 `json:"runeId"`
+    Rank   int64 `json:"rank"`
+}
+
+type MatchMastery struct {
+    MasteryId int64 `json:"masteryId"`
+    Rank      int64 `json:"rank"`
 }
 
 type Player struct {

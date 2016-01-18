@@ -183,7 +183,7 @@ type BannedChampion struct {
 
 type Frame struct {
     Events            []Event                     `json:"events"`
-    ParticipantFrames map[string]ParticipantFrame `json:"participantsFrames"`
+    ParticipantFrames map[string]ParticipantFrame `json:"participantFrames"`
     Timestamp         int64                       `json:"timestamp"`
 }
 

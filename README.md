@@ -3,15 +3,16 @@ Go library for Riot's League of Legends API
 
 Contains support for:
 
-| Endpoint    | Version |
-| ----------- | ------- |
-| Match       | v2.2    |
-| MatchList   | v2.2    |
-| Summoner    | v1.4    |
-| Game        | v1.3    |
-| Stats       | v1.3    |
-| CurrentGame | v1.0    |
-| League      | v2.5    |
+| Endpoint        | Version |
+| --------------- | ------- |
+| Match           | v2.2    |
+| MatchList       | v2.2    |
+| Summoner        | v1.4    |
+| Game            | v1.3    |
+| Stats           | v1.3    |
+| CurrentGame     | v1.0    |
+| League          | v2.5    |
+| ChampionMastery |         |
 
 Install using:
 ```

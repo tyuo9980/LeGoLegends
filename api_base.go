@@ -33,35 +33,41 @@ var (
 )
 
 const (
-	CDN_ROOT string = "https://ddragon.leagueoflegends.com/cdn"
+	CDN_ROOT 						string = "https://ddragon.leagueoflegends.com/cdn"
+	API_ROOT 						string = ".api.riotgames.com/lol"
 
-	MATCH_LIST string = "v2.2/matchlist/by-summoner/"
+	STATUS string = "/status/v3/shard-data"
 
-	MATCH string = "v2.2/match/"
+	SPECTATOR_ACTIVE		string = "/spectator/v3/active-games/by-summoner/"
 
-	GAME string = "v1.3/game/by-summoner/"
+	SUMMONER_BY_NAME   	string = "/summoner/v3/summoners/by-name/"
+	SUMMONER_BY_ACCOUNT	string = "/summoner/v3/summoners/by-account/"
+	SUMMONER_BY_ID			string = "/summoner/v3/summoners/"
 
-	CURRENT_GAME string = "observer-mode/rest/consumer/getSpectatorGameInfo/"
+	RUNES     	string = "/platform/v3/runes/by-summoner/"
+	MASTERIES 	string = "/platform/v3/masteries/by-summoner/"
 
-	CHAMPION_MASTERY string = "player/"
+	MATCH string = "/match/v3/matches/"
+	MATCHLISTS string = "/match/v3/matchlists/by-account/"
+	TIMELINES string = "match/v3/timelines/by-match/"
 
-	LEAGUE_BY_SUMMONER string = "v2.5/league/by-summoner/"
-	LEAGUE_BY_TEAM     string = "v2.5/league/by-team/"
-	LEAGUE_CHALLENGER  string = "v2.5/league/challenger/"
-	LEAGUE_MASTER      string = "v2.5/league/master"
+	CHAMPION_MASTERY string = "/champion-mastery/v3/champion-masteries/by-summoner/"
 
-	SUMMONER_BY_NAME   string = "v1.4/summoner/by-name/"
-	SUMMONER_BY_ID     string = "v1.4/summoner/"
-	SUMMONER_NAME      string = "v1.4/summoner/"
-	SUMMONER_RUNES     string = "v1.4/summoner/"
-	SUMMONER_MASTERIES string = "v1.4/summoner/"
+	CHALLENGER_LEAGUE_BY_QUEUE string = "/league/v3/challengerleagues/by-queue/"
+	MASTER_LEAGUE_BY_QUEUE string = "/league/v3/masterleagues/by-queue/"
+	LEAGUE_BY_SUMMONER string = "/league/v3/leagues/by-summoner/"
+	POSITION_BY_SUMMONER string = "/league/v3/positions/by-summoner/"
 
-	STATS_RANKED  string = "v1.3/stats/by-summoner/"
-	STATS_SUMMARY string = "v1.3/stats/by-summoner/"
-
-	STATIC_VERSION  string = "v1.2/versions/"
-	STATIC_CHAMPION string = "v1.2/champion/"
-	STATIC_ITEM     string = "v1.2/item/"
+	STATIC_CHAMPIONS string = "/static-data/v3/champions/"
+	STATIC_ITEMS string = "/static-data/v3/items/"
+	STATIC_LANGUAGE_STRINGS string = "/static-data/v3/language-strings"
+	STATIC_LANGUAGES string = "/static-data/v3/languages"
+	STATIC_MAPS string = "/static-data/v3/maps"
+	STATIC_MASTERIES string = "/static-data/v3/masteries/"
+	STATIC_ICONS string = "/static-data/v3/profile-icons"
+	STATIC_RUNES string = "/static-data/v3/runes/"
+	STATIC_SUMMONERS string = "/static-data/v3/summoner-spells"
+	STATIC_VERSIONS string = "/static-data/v3/versions"
 )
 
 func NormalizeNames(names ...string) []string {
@@ -76,24 +82,8 @@ func NormalizeNames(names ...string) []string {
 	return nameList
 }
 
-func createApiUrl(endpoint string, region string) string {
-	return fmt.Sprintf("https://%v.api.pvp.net/api/lol/%v/%v", region, region, endpoint)
-}
-
-func createStaticUrl(endpoint string, region string) string {
-	return fmt.Sprintf("https://%v.api.pvp.net/api/lol/static-data/%v/%v", region, region, endpoint)
-}
-
-func createChampMasteryUrl(endpoint string, region string) string {
-	return fmt.Sprintf("https://%v.api.pvp.net/championmastery/location/%v", region, pidMap[region], endpoint)
-}
-
-func createObserverUrl(endpoint string, region string) string {
-	return fmt.Sprintf("https://%v.api.pvp.net/observer-mode/rest/%v", region, endpoint)
-}
-
-func createShardUrl(endpoint string, region string) string {
-	return fmt.Sprintf("https://%v.api.pvp.net/shards/%v", region, endpoint)
+func createApiUrl(endpoint string, region string, arg string) string {
+	return fmt.Sprintf("https://%v.api.riotgames.com/lol/%v/%v", region, endpoint, arg)
 }
 
 func createArgs(keys string, argVals ...interface{}) string {

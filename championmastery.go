@@ -11,7 +11,6 @@ type ChampionMasteryDto struct {
 	ChampionPointsSinceLastLevel int64  `json:"championPointsSinceLastLevel`
 	ChampionPointsUntilNextLevel int64  `json:"championPointsUntilNextLevel`
 	ChestGranted                 bool   `json:"chestGranted`
-	HighestGrade                 string `json:"highestGrade`
 	LastPlayTime                 int64  `json:"lastPlayTime`
 	PlayerId                     int64  `json:"playerId`
 }

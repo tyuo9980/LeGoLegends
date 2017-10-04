@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-type ChampionMastery struct {
+type ChampionMasteryDto struct {
 	ChampionId                   int64  `json:"championId"`
 	ChampionLevel                int    `json:"championLevel`
 	ChampionPoints               int    `json:"championPoints`

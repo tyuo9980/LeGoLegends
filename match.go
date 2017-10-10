@@ -4,28 +4,28 @@ import (
     "fmt"
 )
 
-type MatchDto struct {
+type Match struct {
     SeasonId                int                       `json:"seasonId"`
     QueueId                 int                       `json:"queueId"`
     GameId                  int64                     `json:"gameId"`
-    ParticipantIdentities   []ParticipantIdentityDto  `json:"participantIdentities"`
+    ParticipantIdentities   []ParticipantIdentity  `json:"participantIdentities"`
     GameVersion             string                    `json:"gameVersion"`
     PlatformId              string                    `json:"platformId"`
     GameMode                string                    `json:"gameMode"`
     MapId                   int                       `json:"mapId"`
     GameType                string                    `json:"gameType"`
-    Teams                   []TeamStatsDto            `json:"teams"`
-    Participants            []ParticipantDto          `json:"participants"`
+    Teams                   []TeamStats            `json:"teams"`
+    Participants            []Participant          `json:"participants"`
     GameCreation            int64                     `json:"gameCreation"`
     GameDuration            int64                     `json:"gameDuration"`
 }
 
-type ParticipantIdentityDto struct {
+type ParticipantIdentity struct {
     ParticipantId int        `json:"participantId"`
-    Player        PlayerDto  `json:"player"`
+    Player        Player  `json:"player"`
 }
 
-type PlayerDto struct {
+type Player struct {
     CurrentPlatformId string  `json:"currentPlatformId"`
     SummonerName      string  `json:"summonerName"`
     MatchHistoryURI   string  `json:"matchHistoryUri"`
@@ -36,8 +36,8 @@ type PlayerDto struct {
     AccountId         int64   `json:"accountId"`
 }
 
-type TeamStatsDto struct {
-    Bans                 []TeamBansDto    `json:"bans"`
+type TeamStats struct {
+    Bans                 []TeamBans    `json:"bans"`
     BaronKills           int              `json:"baronKills"`
     DominionVictoryScore int              `json:"dominionVictoryScore"`
     DragonKills          int              `json:"dragonKills"`
@@ -55,25 +55,25 @@ type TeamStatsDto struct {
     Win                  string           `json:"win"`
 }
 
-type TeamBansDto struct {
+type TeamBans struct {
     ChampionId int `json:"championId"`
     PickTurn   int `json:"pickTurn"`
 }
 
-type ParticipantDto struct {
+type Participant struct {
     ChampionId                int                    `json:"championId"`
     HighestAchievedSeasonTier string                 `json:"highestAchievedSeasonTier"`
-    Masteries                 []MasteryDto           `json:"masteries"`
+    Masteries                 []Mastery           `json:"masteries"`
     ParticipantId             int                    `json:"participantId"`
-    Runes                     []RuneDto              `json:"runes"`
+    Runes                     []Rune              `json:"runes"`
     Spell1Id                  int                    `json:"spell1Id"`
     Spell2Id                  int                    `json:"spell2Id"`
-    Stats                     ParticipantStatsDto    `json:"stats"`
+    Stats                     ParticipantStats    `json:"stats"`
     TeamId                    int                    `json:"teamId"`
-    Timeline                  ParticipantTimelineDto `json:"timeline"`
+    Timeline                  ParticipantTimeline `json:"timeline"`
 }
 
-type ParticipantStatsDto struct {
+type ParticipantStats struct {
     Assists                         int   `json:"assists"`
     AltarsCaptured                  int   `json:"altarsCaptured"`
     AltarsNeutralized               int   `json:"altarsNeutralized"`
@@ -148,12 +148,12 @@ type ParticipantStatsDto struct {
     Win                             bool  `json:"win"`
 }
 
-type RuneDto struct {
+type Rune struct {
     RuneId int `json:"runeId"`
     Rank   int `json:"rank"`
 }
 
-type ParticipantTimelineDto struct {
+type ParticipantTimeline struct {
     CreepsPerMinDeltas            map[string]float64 `json:"creepsPerMinDeltas"`
     CsDiffPerMinDeltas            map[string]float64 `json:"csDiffPerMinDeltas"`
     DamageTakenDiffPerMinDeltas   map[string]float64 `json:"damageTakenDiffPerMinDeltas"`
@@ -166,19 +166,19 @@ type ParticipantTimelineDto struct {
     XpPerMinDeltas                map[string]float64 `json:"xpPerMinDeltas"`
 }
 
-type MasteryDto struct {
+type Mastery struct {
     MasteryId int `json:"masteryId"`
     Rank      int `json:"rank"`
 }
 
-type MatchListDto struct {
-    Matches     []MatchReferenceDto `json:"matches"`
+type MatchList struct {
+    Matches     []MatchReference `json:"matches"`
     TotalGames  int                 `json:"totalGames"`
     StartIndex  int                 `json:"startIndex"`
     EndIndex    int                 `json:"endIndex"`
 }
 
-type MatchReferenceDto struct {
+type MatchReference struct {
     Lane        string  `json:"lane"`
     GameId      int64   `json:"gameId"`
     Champion    int     `json:"champion"`
@@ -189,36 +189,36 @@ type MatchReferenceDto struct {
     Timestamp   int64   `json:"timestamp"`
 }
 
-type MatchTimelineDto struct {
+type MatchTimeline struct {
     FrameInterval int64           `json:"frameInterval"`
-    Frames        []MatchFrameDto `json:"frames"`
+    Frames        []MatchFrame `json:"frames"`
 }
 
-type MatchFrameDto struct {
-    Events            []MatchEventDto                     `json:"events"`
-    ParticipantFrames map[string]MatchParticipantFrameDto `json:"participantFrames"`
+type MatchFrame struct {
+    Events            []MatchEvent                     `json:"events"`
+    ParticipantFrames map[string]MatchParticipantFrame `json:"participantFrames"`
     Timestamp         int64                               `json:"timestamp"`
 }
 
-type MatchParticipantFrameDto struct {
+type MatchParticipantFrame struct {
     CurrentGold         int              `json:"currentGold"`
     DominionScore       int              `json:"dominionScore"`
     JungleMinionsKilled int              `json:"jungleMinionsKilled"`
     Level               int              `json:"level"`
     MinionsKilled       int              `json:"minionsKilled"`
     ParticipantId       int              `json:"participantId"`
-    Position            MatchPositionDto `json:"position"`
+    Position            MatchPosition `json:"position"`
     TeamScore           int              `json:"teamScore"`
     TotalGold           int              `json:"totalGold"`
     Xp                  int              `json:"xp"`
 }
 
-type MatchPositionDto struct {
+type MatchPosition struct {
     X   int `json:"x"`
     Y   int `json:"y"`
 }
 
-type MatchEventDto struct {
+type MatchEvent struct {
     AscendedType            string           `json:"ascendedType"`
     AssistingParticipantIds []int            `json:"assistingParticipantIds"`
     BuildingType            string           `json:"buildingType"`
@@ -234,7 +234,7 @@ type MatchEventDto struct {
     MonsterSubType          string           `json:"monsterSubType"`
     ParticipantId           int              `json:"participantId"`
     PointCaptured           string           `json:"pointCaptured"`
-    Position                MatchPositionDto `json:"position"`
+    Position                MatchPosition `json:"position"`
     SkillSlot               int              `json:"skillSlot"`
     TeamId                  int              `json:"teamId"`
     Timestamp               int64            `json:"timestamp"`
@@ -253,11 +253,10 @@ type MatchList struct {
 
 type MatchReference struct {
     Timestamp  int64  `json:"timestamp"`
-    Champion   int64  `json:"champion"`
-    Region     string `json:"region"`
+    Champion   int    `json:"champion"`
     Queue      string `json:"queue"`
     Season     string `json:"season"`
-    MatchId    int64  `json:"matchId"`
+    GameId     int64  `json:"gameId"`
     Role       string `json:"role"`
     PlatformId string `json:"platformId"`
     Lane       string `json:"lane"`
@@ -265,10 +264,10 @@ type MatchReference struct {
 
 func GetMatchlist(
     region string,
-    summonerId int64,
-    championIds string,
-    rankedQueues string,
-    seasons string,
+    accountId int64,
+    championIds []int,
+    rankedQueues []int,
+    seasons []int,
     beginTime int64,
     endTime int64,
     beginIndex int,
@@ -276,7 +275,7 @@ func GetMatchlist(
 
     argString := "championIds,rankedQueues,seasons,beginTime,endTime,beginIndex,endIndex"
     args := createArgs(argString, championIds, rankedQueues, seasons, beginTime, endTime, beginIndex, endIndex)
-    url := createApiUrl(MATCH_LIST, region) + fmt.Sprintf("%d?%v", summonerId, args)
+    url := createApiUrl(MATCHLISTS, region, accountId) + fmt.Sprintf("?%v", args)
 
     var matchList MatchList
     err := decodeRequest(region, url, &matchList)
@@ -284,22 +283,20 @@ func GetMatchlist(
     return matchList, err
 }
 
-func GetMatch(region string, matchId int64, includeTimeline bool) (MatchDetail, error) {
-    args := createArgs("includeTimeline", includeTimeline)
-    url := createApiUrl(MATCH, region) + fmt.Sprintf("%d?%v", matchId, args)
+func GetMatch(region string, matchId int64) (Match, error) {
+    url := createApiUrl(MATCH, region, matchId)
 
-    var matchDetail MatchDetail
-    err := decodeRequest(region, url, &matchDetail)
+    var match Match
+    err := decodeRequest(region, url, &match)
 
-    return matchDetail, err
+    return match, err
 }
 
-func GetMatch(region string, matchId int64, includeTimeline bool) (MatchDetail, error) {
-    args := createArgs("includeTimeline", includeTimeline)
-    url := createApiUrl(MATCH, region) + fmt.Sprintf("%d?%v", matchId, args)
+func GetMatchTimeline(region string, matchId int64) (MatchTimeline, error) {
+    url := createApiUrl(TIMELINES, region, matchId)
 
-    var matchDetail MatchDetail
-    err := decodeRequest(region, url, &matchDetail)
+    var matchTimeline MatchTimeline
+    err := decodeRequest(region, url, &matchTimeline)
 
-    return matchDetail, err
+    return matchTimeline, err
 }

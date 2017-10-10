@@ -53,8 +53,8 @@ const (
 
 	CHAMPION_MASTERY string = "champion-mastery/v3/champion-masteries/by-summoner/"
 
-	CHALLENGER_LEAGUE_BY_QUEUE string = "/league/v3/challengerleagues/by-queue/"
-	MASTER_LEAGUE_BY_QUEUE     string = "/league/v3/masterleagues/by-queue/"
+	CHALLENGER_LEAGUE string = "/league/v3/challengerleagues/by-queue/"
+	MASTER_LEAGUE     string = "/league/v3/masterleagues/by-queue/"
 	LEAGUE_BY_SUMMONER         string = "/league/v3/leagues/by-summoner/"
 	POSITION_BY_SUMMONER       string = "/league/v3/positions/by-summoner/"
 

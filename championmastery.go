@@ -15,7 +15,7 @@ type ChampionMastery struct {
 	PlayerId                     int64 `json:"playerId`
 }
 
-func getChampionMastery(region string, summonerId int64, championId int64) (ChampionMastery, error) {
+func GetChampionMastery(region string, summonerId int64, championId int64) (ChampionMastery, error) {
 	url := createApiUrl(CHAMPION_MASTERY, region, fmt.Sprintf("%d/by-champion/%d", summonerId, championId))
 
 	var championMastery ChampionMastery
@@ -24,7 +24,7 @@ func getChampionMastery(region string, summonerId int64, championId int64) (Cham
 	return championMastery, err
 }
 
-func getChampionMasteries(region string, summonerId int64) ([]ChampionMastery, error) {
+func GetChampionMasteries(region string, summonerId int64) ([]ChampionMastery, error) {
 	url := createApiUrl(CHAMPION_MASTERY, region, summonerId)
 
 	var championMastery []ChampionMastery

@@ -23,8 +23,8 @@ func GetSummonerByName(region string, name string) (Summoner, error) {
     return summoners, err
 }
 
-func GetSummonerByAccountId(region string, id string) (Summoner, error) {
-    url := createApiUrl(SUMMONER_BY_ACCOUNT, region, id)
+func GetSummonerByAccountId(region string, accountId string) (Summoner, error) {
+    url := createApiUrl(SUMMONER_BY_ACCOUNT, region, accountId)
 
     var summoners Summoner
     err := decodeRequest(region, url, &summoner)
@@ -32,8 +32,8 @@ func GetSummonerByAccountId(region string, id string) (Summoner, error) {
     return summoners, err
 }
 
-func GetSummonerBySummonerId(region string, id string) (Summoner, error) {
-    url := createApiUrl(SUMMONER_BY_ID, region, id)
+func GetSummonerBySummonerId(region string, summonerId string) (Summoner, error) {
+    url := createApiUrl(SUMMONER_BY_ID, region, summonerId)
 
     var summoners Summoner
     err := decodeRequest(region, url, &summoner)

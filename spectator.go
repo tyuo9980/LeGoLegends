@@ -5,7 +5,7 @@ import (
 )
 
 type CurrentGameInfo struct {
-    BannedChampions   []CurrentGameBannedChampion `json:"bannedChampion"`
+    BannedChampions   []BannedChampion `json:"bannedChampion"`
     GameId            int64                       `json:"gameId"`
     GameLength        int64                       `json:"gameLength"`
     GameMode          string                      `json:"gameMode"`
@@ -18,7 +18,7 @@ type CurrentGameInfo struct {
     PlatformId        string                      `json:"platformId"`
 }
 
-type CurrentGameBannedChampion struct {
+type BannedChampion struct {
     ChampionId int64 `json:"championId"`
     PickTurn   int   `json:"pickTurn"`
     TeamId     int64 `json:"teamId"`
@@ -51,9 +51,8 @@ type CurrentGameRune struct {
     RuneId int64 `json:"runeId"`
 }
 
-func GetSpectatorGameInfo(region string, summonerId int64) (CurrentGameInfo, error) {
-    args := createArgs("")
-    url := createApiUrl(CURRENT_GAME, region) + fmt.Sprintf("%v/%d?%v", PlatformId, summonerId, args)
+func GetActiveGame(region string, summonerId int64) (CurrentGameInfo, error) {
+    url := createApiUrl(SPECTATOR_ACTIVE, region, summonerId)
 
     var currentGameInfo CurrentGameInfo
     err := decodeRequest(region, url, &currentGameInfo)

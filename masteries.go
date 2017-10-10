@@ -22,8 +22,8 @@ type MasterySlot struct {
     Rank int `json:"rank"`
 }
 
-func GetSummonerMasteries(region string, id string) (MasteryPages, error) {
-    url := createApiUrl(SUMMONER_MASTERIES, region, id)
+func GetSummonerMasteries(region string, summonerId string) (MasteryPages, error) {
+    url := createApiUrl(MASTERIES, region, summonerId)
 
     var masteries MasteryPages
     err := decodeRequest(region, url, &masteries)

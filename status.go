@@ -45,11 +45,11 @@ type Translation struct {
     UpdatedAt       string  `json:"updated_at"`
 }
 
-func GetSummonerRunes(region string) (ShardStatus, error) {
+func GetShardStatus(region string) (ShardStatus, error) {
     url := createApiUrl(STATUS, region)
 
     var status ShardStatus
     err := decodeRequest(region, url, &status)
 
-    return runes, err
+    return status, err
 }

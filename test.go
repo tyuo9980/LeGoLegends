@@ -1,7 +1,8 @@
 package legolegends
 
 import (
-    "fmt"
+    "testing"
+    l "github.com/tyuo9980/LeGoLegends"
 )
 
 var (
@@ -14,36 +15,36 @@ var (
     name string = "xxCode"
 )
 
-func Tests() {
+func TestAll(t *testing.T) {
     //champ mastery
     res, err := GetChampionMastery(region, summonerId, 1)
-    res, err := GetChampionMasteries(region, summonerId)
+    res, err = GetChampionMasteries(region, summonerId)
 
     //league
-    res, err := GetLeagues(region, summonerId)
-    res, err := GetLeaguePositions(region, summonerId)
-    res, err := GetChallengerLeagues(region, queue)
-    res, err := GetMasterLeagues(region, queue)
+    res, err = GetLeagues(region, summonerId)
+    res, err = GetLeaguePositions(region, summonerId)
+    res, err = GetChallengerLeagues(region, queue)
+    res, err = GetMasterLeagues(region, queue)
 
     //masteries
-    res, err := GetSummonerMasteries(region, summonerId)
+    res, err = GetSummonerMasteries(region, summonerId)
 
     //match
-    res, err := GetMatchlist(region, accountId, nil, nil, nil, nil, nil, 1, 2)
-    res, err := GetMatch(region, matchId)
-    res, err := GetMatchTimeline(region, matchId)
+    res, err = GetMatchlist(region, accountId, nil, nil, nil, nil, nil, 1, 2)
+    res, err = GetMatch(region, matchId)
+    res, err = GetMatchTimeline(region, matchId)
 
     //runes
-    res, err := GetSummonerRunes(region, summonerId)
+    res, err = GetSummonerRunes(region, summonerId)
 
     //spectator
-    res, err := GetActiveGame(region, summonerId)
+    res, err = GetActiveGame(region, summonerId)
 
     //status
-    res, err := GetShardStatus(region)
+    res, err = GetShardStatus(region)
 
     //summoner
-    res, err := GetSummonerByName(region, name)
-    res, err := GetSummonerByAccountId(region, accountId)
-    res, err := GetSummonerBySummonerId(region, summonerId)
+    res, err = GetSummonerByName(region, name)
+    res, err = GetSummonerByAccountId(region, accountId)
+    res, err = GetSummonerBySummonerId(region, summonerId)
 }

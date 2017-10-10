@@ -86,6 +86,10 @@ func createApiUrl(endpoint string, region string, arg string) string {
 	return fmt.Sprintf("https://%v.api.riotgames.com/lol/%v/%v?api_key=%v", region, endpoint, arg, ApiKey)
 }
 
+func createApiUrl(endpoint string, region string, arg int64) string {
+	return fmt.Sprintf("https://%v.api.riotgames.com/lol/%v/%d?api_key=%v", region, endpoint, arg, ApiKey)
+}
+
 func createArgs(keys string, argVals ...interface{}) string {
 	keyArray := strings.Split(keys, ",")
 	args := "api_key=" + ApiKey

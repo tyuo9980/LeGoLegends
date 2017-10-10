@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-type ChampionMasteryDto struct {
+type ChampionMastery struct {
 	ChampionId                   int64 `json:"championId"`
 	ChampionLevel                int   `json:"championLevel`
 	ChampionPoints               int   `json:"championPoints`
@@ -16,20 +16,18 @@ type ChampionMasteryDto struct {
 }
 
 func getChampionMastery(region string, summonerId int64, championId int64) (ChampionMastery, error) {
-	args := createArgs("")
-	url := createChampMasteryUrl(CHAMPION_MASTERY, region, fmt.Sprintf("%d/by-champion/%d", summonerId, championId))
+	url := createApiUrl(CHAMPION_MASTERY, region, fmt.Sprintf("%d/by-champion/%d", summonerId, championId))
 
-	var championMastery ChampionMasteryDto
+	var championMastery ChampionMastery
 	err := decodeRequest(region, url, &championMastery)
 
 	return championMastery, err
 }
 
 func getChampionMasteries(region string, summonerId int64) ([]ChampionMastery, error) {
-	args := createArgs("")
-	url := createChampMasteryUrl(CHAMPION_MASTERY, region, fmt.Sprintf("%d", summonerId))
+	url := createApiUrl(CHAMPION_MASTERY, region, summonerId)
 
-	var championMastery []ChampionMasteryDto
+	var championMastery []ChampionMastery
 	err := decodeRequest(region, url, &championMastery)
 
 	return championMastery, err

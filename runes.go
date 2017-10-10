@@ -21,3 +21,12 @@ type RuneSlot struct {
     RuneId     int `json:"runeId"`
     RuneSlotId int `json:"runeSlotId"`
 }
+
+func GetSummonerRunes(region string, id string) (RunePages, error) {
+    url := createApiUrl(RUNES, region, id)
+
+    var runes RunePages
+    err := decodeRequest(region, url, &runes)
+
+    return runes, err
+}

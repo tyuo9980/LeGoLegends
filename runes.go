@@ -1,10 +1,5 @@
 package legolegends
 
-import (
-    "fmt"
-    "strings"
-)
-
 type RunePages struct {
     Pages      []RunePage `json:"pages"`
     SummonerId int64      `json:"summonerId"`
@@ -22,7 +17,7 @@ type RuneSlot struct {
     RuneSlotId int `json:"runeSlotId"`
 }
 
-func GetSummonerRunes(region string, summonerId string) (RunePages, error) {
+func GetSummonerRunes(region string, summonerId int64) (RunePages, error) {
     url := createApiUrl(RUNES, region, summonerId)
 
     var runes RunePages

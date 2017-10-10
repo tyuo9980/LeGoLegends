@@ -244,24 +244,6 @@ type MatchEvent struct {
     WardType                string           `json:"wardType"`
 }
 
-type MatchList struct {
-    TotalGames int              `json:"totalGames"`
-    StartIndex int              `json:"startIndex"`
-    EndIndex   int              `json:"endIndex"`
-    Matches    []MatchReference `json:"matches"`
-}
-
-type MatchReference struct {
-    Timestamp  int64  `json:"timestamp"`
-    Champion   int    `json:"champion"`
-    Queue      string `json:"queue"`
-    Season     string `json:"season"`
-    GameId     int64  `json:"gameId"`
-    Role       string `json:"role"`
-    PlatformId string `json:"platformId"`
-    Lane       string `json:"lane"`
-}
-
 func GetMatchlist(
     region string,
     accountId int64,

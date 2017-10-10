@@ -1,9 +1,5 @@
 package legolegends
 
-import (
-    "fmt"
-)
-
 type ShardStatus struct {
     SummonerId int64      `json:"summonerId"`
 

@@ -2,7 +2,6 @@ package legolegends
 
 import (
     "fmt"
-    "strings"
 )
 
 type LeagueList struct {
@@ -33,7 +32,7 @@ type MiniSeries struct {
     Wins     int    `json:"wins"`
 }
 
-func GetLeagues(region string, summonerId string) ([]LeagueList, error) {
+func GetLeagues(region string, summonerId int64) ([]LeagueList, error) {
     url := createApiUrl(LEAGUE_BY_SUMMONER, region, summonerId)
 
     var leagues []LeagueList
@@ -42,7 +41,7 @@ func GetLeagues(region string, summonerId string) ([]LeagueList, error) {
     return leagues, err
 }
 
-func GetLeaguePositions(region string, summonerId string) ([]LeaguePosition, error) {
+func GetLeaguePositions(region string, summonerId int64) ([]LeaguePosition, error) {
     url := createApiUrl(POSITION_BY_SUMMONER, region, summonerId)
 
     var positions []LeaguePosition

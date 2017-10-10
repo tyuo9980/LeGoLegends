@@ -1,9 +1,5 @@
 package legolegends
 
-import (
-    "fmt"
-)
-
 type CurrentGameInfo struct {
     BannedChampions   []BannedChampion `json:"bannedChampion"`
     GameId            int64                       `json:"gameId"`

@@ -1,10 +1,5 @@
 package legolegends
 
-import (
-    "fmt"
-    "strings"
-)
-
 type MasteryPages struct {
     Pages      []MasteryPage `json:"pages"`
     SummonerId int64         `json:"summonerId"`
@@ -22,7 +17,7 @@ type MasterySlot struct {
     Rank int `json:"rank"`
 }
 
-func GetSummonerMasteries(region string, summonerId string) (MasteryPages, error) {
+func GetSummonerMasteries(region string, summonerId int64) (MasteryPages, error) {
     url := createApiUrl(MASTERIES, region, summonerId)
 
     var masteries MasteryPages

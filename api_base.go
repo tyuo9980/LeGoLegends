@@ -82,12 +82,21 @@ func NormalizeNames(names ...string) []string {
 	return nameList
 }
 
-func createApiUrl(endpoint string, region string, arg string) string {
-	return fmt.Sprintf("https://%v.api.riotgames.com/lol/%v/%v?api_key=%v", region, endpoint, arg, ApiKey)
-}
+func createApiUrl(endpoint string, region string, arg ...interface{}) string {
+	var argString string
 
-func createApiUrl(endpoint string, region string, arg int64) string {
-	return fmt.Sprintf("https://%v.api.riotgames.com/lol/%v/%d?api_key=%v", region, endpoint, arg, ApiKey)
+	for _, arg := range arg{
+		switch arg.(type){
+		case int:
+			argString = strconv.Itoa(arg.(int))
+		case int64:
+			argString = strconv.FormatInt(arg.(int64), 10)
+		default:
+			argString = ""
+		}
+	}
+
+	return fmt.Sprintf("https://%v.api.riotgames.com/lol/%v/%v?api_key=%v", region, endpoint, argString, ApiKey)
 }
 
 func createArgs(keys string, argVals ...interface{}) string {

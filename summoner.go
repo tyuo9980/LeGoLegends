@@ -1,10 +1,5 @@
 package legolegends
 
-import (
-    "fmt"
-    "strings"
-)
-
 type Summoner struct {
     AccountId     int64  `json:"accountId"`
     Id            int64  `json:"id"`
@@ -20,23 +15,23 @@ func GetSummonerByName(region string, name string) (Summoner, error) {
     var summoner Summoner
     err := decodeRequest(region, url, &summoner)
 
-    return summoners, err
+    return summoner, err
 }
 
-func GetSummonerByAccountId(region string, accountId string) (Summoner, error) {
+func GetSummonerByAccountId(region string, accountId int64) (Summoner, error) {
     url := createApiUrl(SUMMONER_BY_ACCOUNT, region, accountId)
 
-    var summoners Summoner
+    var summoner Summoner
     err := decodeRequest(region, url, &summoner)
 
-    return summoners, err
+    return summoner, err
 }
 
-func GetSummonerBySummonerId(region string, summonerId string) (Summoner, error) {
+func GetSummonerBySummonerId(region string, summonerId int64) (Summoner, error) {
     url := createApiUrl(SUMMONER_BY_ID, region, summonerId)
 
-    var summoners Summoner
+    var summoner Summoner
     err := decodeRequest(region, url, &summoner)
 
-    return summoners, err
+    return summoner, err
 }

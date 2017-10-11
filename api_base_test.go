@@ -1,4 +1,3 @@
-package legolegends
 
 import (
     "testing"
@@ -16,7 +15,11 @@ var (
 
 func TestAll(t *testing.T) {
     //champ mastery
-    GetChampionMastery(region, summonerId, 1)
+    res, err := GetChampionMastery(region, summonerId, 1)
+    if err != nil {
+        t.Errorf("Expected no error, got %s", err)
+    }
+    /*
     GetChampionMasteries(region, summonerId)
 
     //league
@@ -46,4 +49,5 @@ func TestAll(t *testing.T) {
     GetSummonerByName(region, name)
     GetSummonerByAccountId(region, accountId)
     GetSummonerBySummonerId(region, summonerId)
+    */
 }
